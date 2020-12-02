@@ -9,6 +9,7 @@ import math from 'remark-math';
 import Date from '../../components/date';
 import Layout from '../../components/layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
+import style from '../../styles/Post.module.css';
 import utilStyles from '../../styles/utils.module.css';
 
 const renderers = {
@@ -43,9 +44,10 @@ export default function Post({ postData }) {
           <Date dateString={postData.date} />
         </div>
         <ReactMarkdown
+          className={style.markdown}
           plugins={[gfm, math]}
           renderers={renderers}
-          transformImageUri={(url) => `/${url}`}
+          transformImageUri={(url) => (url.match('../public') ? url.substring(9) : `/${url}`)}
         >
           {postData.content}
         </ReactMarkdown>

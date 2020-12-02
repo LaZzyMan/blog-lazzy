@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Date from '../components/date';
 import Layout, { siteTitle } from '../components/layout';
 import getSortedPostsData from '../lib/posts';
+import style from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
 
 export default function Home({ allPostsData }) {
@@ -11,7 +12,7 @@ export default function Home({ allPostsData }) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
+      <section className={style.description}>
         <p>日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>

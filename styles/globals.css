@@ -1,9 +1,14 @@
+@tailwind base;
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: STXihei, Microsoft YaHei, SimSun;
 }
 
 a {
@@ -23,3 +28,9 @@ img {
   max-width: 100%;
   display: block;
 }
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+

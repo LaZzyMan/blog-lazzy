@@ -1,0 +1,34 @@
+.markdown {
+    @apply text-lg;
+}
+
+.markdown h2 {
+    @apply text-3xl mt-4 mb-4 leading-snug font-semibold;
+}
+  
+.markdown h3 {
+    @apply text-2xl mt-8 mb-4 leading-snug font-medium;
+}
+
+.markdown p,
+.markdown ul,
+.markdown ol,
+.markdown blockquote {
+  @apply my-4;
+}
+
+.markdown ul ul{
+    list-style-type: circle;
+    @apply ml-6;
+    @apply list-inside;
+}
+
+.markdown ul{
+    @apply list-disc list-inside;
+}
+
+.markdown blockquote {
+    @apply border-l-4 border-gray-500;
+    @apply pl-4;
+    @apply text-gray-600;
+}
