@@ -1,13 +1,22 @@
 .markdown {
-    @apply text-lg;
+    @apply text-content;
 }
 
+.markdown h1 {
+    @apply text-h1;
+}
+  
+
 .markdown h2 {
-    @apply text-3xl mt-4 mb-4 leading-snug font-semibold;
+    @apply text-h2 mt-4 mb-4 leading-snug font-semibold;
 }
   
 .markdown h3 {
-    @apply text-2xl mt-8 mb-4 leading-snug font-medium;
+    @apply text-h3 mb-4 leading-snug font-medium;
+}
+
+.markdown h4 {
+    @apply text-h4 mb-4 leading-snug font-medium;
 }
 
 .markdown p,

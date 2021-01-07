@@ -6,6 +6,8 @@ import getSortedPostsData from '../lib/posts';
 import style from '../styles/Home.module.css';
 import utilStyles from '../styles/utils.module.css';
 
+const blogClasses = ['Life', 'Research', 'Development'];
+
 export default function Home({ allPostsData }) {
   return (
     <Layout home>
@@ -16,21 +18,28 @@ export default function Home({ allPostsData }) {
         <p>日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a href={`/posts/${id}`}>
-                  {title}
-                </a>
-              </Link>
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
+        {blogClasses.map((c) => {
+          const categoryPostsData = allPostsData.filter(({ category }) => (c === category));
+          return (
+            <>
+              <h2 className={utilStyles.headingLg}>{c}</h2>
+              <ul className={utilStyles.list}>
+                {categoryPostsData.map(({ id, date, title }) => (
+                  <li className={utilStyles.listItem} key={id}>
+                    <Link href={`/posts/${id}`}>
+                      <a href={`/posts/${id}`}>
+                        {title}
+                      </a>
+                    </Link>
+                    <small className={utilStyles.lightText}>
+                      <Date dateString={date} />
+                    </small>
+                  </li>
+                ))}
+              </ul>
+            </>
+          );
+        })}
       </section>
     </Layout>
   );

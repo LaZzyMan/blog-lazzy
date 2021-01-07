@@ -3,6 +3,8 @@ title: 基于GeoDjango搭建地图服务
 date: '2018-04-22 20:51:06'
 tags:  
 - Django
+
+category: Development
 ---
 
 使用Django开发全球恐怖袭击分布展示系统的后端程序，功能包括：

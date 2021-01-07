@@ -1,66 +1,63 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import utilStyles from '../styles/utils.module.css';
+import BgGrid from './bgGrid';
 import styles from './layout.module.css';
+import MenuBtn from './menuBtn';
 
-const name = 'LaZzY';
+const name = 'Seigo Natsume';
 export const siteTitle = 'Blog of LaZzY';
 
 export default function Layout({ children, home }) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
-        />
-        <meta
-          property="og:image"
-          content={`https://og-image.now.sh/${encodeURI(
-            siteTitle,
-          )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-        />
-        <meta name="og:title" content={siteTitle} />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <img
-              src="/img/logo_black.png"
-              className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
-              alt={name}
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <a href="/">
-                <img
-                  src="/img/logo_black.png"
-                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
-                  alt={name}
-                />
-              </a>
-            </Link>
-            <h2 className={utilStyles.headingLg}>
+    <>
+      <BgGrid />
+      <div className={styles.container}>
+        <Head>
+          <title>{siteTitle}</title>
+          <link rel="icon" href="/favicon.ico" />
+          <meta name="keywords" content="Blog" />
+          <meta name="description" content="Home page of LaZzY." />
+          <meta name="author" content="LaZzY" />
+        </Head>
+        <header className={styles.header}>
+          {home ? (
+            <>
+              <img
+                src="/img/logo_black.png"
+                className={styles.headerImage}
+                alt={name}
+              />
+              <h1 className="text-h2">{name}</h1>
+            </>
+          ) : (
+            <>
               <Link href="/">
-                <a href="/" className={utilStyles.colorInherit}>{name}</a>
+                <a href="/">
+                  <img
+                    src="/img/logo_black.png"
+                    className={styles.headerImage}
+                    alt={name}
+                  />
+                </a>
               </Link>
-            </h2>
-          </>
-        )}
-      </header>
-      <main>{children}</main>
-      {!home && (
+              <h2 className="text-h2">
+                <Link href="/">
+                  <a href="/">{name}</a>
+                </Link>
+              </h2>
+            </>
+          )}
+          <MenuBtn />
+        </header>
+        <main>{children}</main>
+        {!home && (
         <div className={styles.backToHome}>
           <Link href="/">
             <a href="/">← Back to home</a>
           </Link>
         </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }

@@ -3,6 +3,8 @@ title: os.path笔记
 date: '2018-06-06 16:56:41'
 tags:
 - python
+
+category: Development
 ---
 
 os.path 模块主要用于文件的属性获取，以下是该模块的几种常用方法。更多的方法可以去查看[官方文档](http://docs.python.org/library/os.path.html)。

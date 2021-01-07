@@ -1,8 +1,10 @@
 ---
-title: '阅读笔记:Bayesian Detection'
+title: 'Note:Bayesian Detection'
 date: '2017-05-23 11:14:58'
 tags: 
 - Bayesian
+
+category: Research
 ---
 
 记录三篇与贝叶斯分类器物体检测算法的论文核心内容。

@@ -5,4 +5,6 @@ tags:
 - python
 - docker
 - django
+
+category: Development
 ---

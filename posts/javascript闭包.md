@@ -4,6 +4,8 @@ date: '2018-08-02 22:01:06'
 tags: 
 - javascript
 - 前端开发
+
+category: Development
 ---
 
 # JavaScript闭包

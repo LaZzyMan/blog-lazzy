@@ -3,6 +3,8 @@ title: VSCode相关
 tags: 
 - vscode
 date: '2018-01-02 16:49:01'
+
+category: Development
 ---
 
 记录与vscode相关的问题和使用技巧

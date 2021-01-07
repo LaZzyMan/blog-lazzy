@@ -4,29 +4,23 @@
 @tailwind components;
 /* Stop purging. */
 
+@media screen and (min-width: 50em) {
+  html {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (min-width: 75em) {
+  html {
+    font-size: 1.5em;
+  }
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: STXihei, Microsoft YaHei, SimSun;
-}
-
-a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underlineS;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-img {
-  max-width: 100%;
-  display: block;
 }
 
 /* Start purging... */

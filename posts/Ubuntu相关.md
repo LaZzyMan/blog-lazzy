@@ -4,6 +4,8 @@ tags:
 - Ubuntu
 - python
 date: '2017-06-22 18:19:33'
+
+category: Development
 ---
 
 

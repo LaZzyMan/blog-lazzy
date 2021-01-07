@@ -6,6 +6,8 @@ tags:
 - webpack
 - mapbox
 - 前端
+
+category: Development
 ---
 
 - 使用react框架和MapboxJS搭建一个简单的地图应用，实现在底图上进行WSM服务和WFS服务的框选式覆盖功能，以及基本的图层管理。
