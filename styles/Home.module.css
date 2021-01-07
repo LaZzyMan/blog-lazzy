@@ -57,12 +57,6 @@
   text-align: left;
 }
 
-.description {
-  line-height: 1.5;
-  @apply text-lg;
-  font-family: SimSun;
-}
-
 .code {
   background: #fafafa;
   border-radius: 5px;

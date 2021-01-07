@@ -9,6 +9,13 @@ module.exports = {
       spacing: {
         bkl: '2.6vw',
         bkw: '5.5vw',
+        bklw: '8.1vw',
+        bk2wl: '13.6vw',
+        line: '1px',
+        h1: '1vh',
+        h2: '2vh',
+        h5: '5vh',
+        h10: '10vh',
       },
       zIndex: {
         bottom: '-1',
@@ -16,6 +23,13 @@ module.exports = {
       sizing: {
         bkw: '5.5vw',
         bkl: '2.6vw',
+        bklw: '8.1vw',
+        bk2wl: '13.6vw',
+        line: '1px',
+        h1: '1vh',
+        h2: '2vh',
+        h5: '5vh',
+        h10: '10vh',
       },
       fontSize: {
         h1: '2.5em',
