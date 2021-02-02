@@ -12,6 +12,10 @@ export default function Home({ allPostsData }) {
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="keywords" content="Blog" />
+        <meta name="description" content="Home page of LaZzY." />
+        <meta name="author" content="LaZzY" />
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         {blogClasses.map((c) => {
