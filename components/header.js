@@ -2,12 +2,14 @@ import Link from 'next/link';
 import MenuBtn from './menuBtn';
 import NavigationBar from './navigation';
 
-export default function Header({ name, description }) {
+export default function Header({
+  name, description, focus, onNaviBarClick,
+}) {
   return (
     <header className="flex flex-col">
       <section className="flex felx-row items-center">
         <Link href="/">
-          <a href="/">
+          <a href="/" onClick={() => onNaviBarClick(0)}>
             <img
               src="/img/logo_black.png"
               className="w-bkw h-bkw"
@@ -22,7 +24,7 @@ export default function Header({ name, description }) {
         <MenuBtn />
       </section>
       <section className="mt-h10">
-        <NavigationBar />
+        <NavigationBar focus={focus} onNaviBarClick={onNaviBarClick} />
       </section>
     </header>
   );
