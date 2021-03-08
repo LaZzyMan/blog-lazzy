@@ -14,9 +14,10 @@ export default function NavigationBar({ focus, onNaviBarClick }) {
             tabIndex={0}
           >
             <span>{c}</span>
-            {focus === i
-              ? <span className="w-full h-line bg-black mt-h2" />
-              : <span className="w-full h-line mt-h2 bg-gray-400" />}
+            { focus === i
+              ? <span className="w-half h-line bg-black mt-h2 z-10" />
+              : <span className="mt-h2" />}
+            <span className="w-full h-line bg-gray-400" />
           </div>
         ))
     }

@@ -1,0 +1,11 @@
+.scrolldown { animation: godown infinite 2s ease-in-out }
+@keyframes godown {
+    0%, 100% {
+        transform: translateY(-25%);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+  }

@@ -1,9 +1,7 @@
 .container {
-    width: 2vh;
-    height: 2vh;
     padding-top: 1vh;
     margin-left: auto;
-    margin-right: 2vw;
+    margin-right: 3.3vw;
 }
 
 .container span {

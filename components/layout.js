@@ -1,37 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BgGrid from './bgGrid';
 import Header from './header';
 
-export const name = 'Seigo Natsume';
-export const siteTitle = 'Blog of LaZzY';
-export const description = '日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。';
 
-export default function Layout({ children }) {
-  const [focus, setFocus] = useState(0);
-  const handleNaviBarClick = (i) => {
-    setFocus(i);
-  };
+const name = 'Seigo Natsume';
+const description = '日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。';
+
+export default function Layout({
+  home, children, onNaviBarClick, focus,
+}) {
+  const colormap = [{ left: '#E7475E', right: '#E6E6E6', card: '#F0D879' },
+    { left: '#587498', right: '#587058', card: '#E86850' },
+    { left: '#20938b', right: '#f3cc6f', card: '#de7921' }];
   return (
     <>
       <BgGrid />
       <div
-        className="mx-bkl pt-bkl"
-        onWheel={(e) => {
-          if (e.deltaY < 0 && focus > 0) {
-            setFocus(focus - 1);
-          }
-          if (e.deltaY > 0 && focus < 3) {
-            setFocus(focus + 1);
-          }
-        }}
+        className="ml-bkl mr-bklfixed pt-bkl"
       >
         <Header
+          home={home}
           name={name}
           description={description}
           focus={focus}
-          onNaviBarClick={handleNaviBarClick}
+          onNaviBarClick={onNaviBarClick}
         />
-        <main>{children}</main>
+        {children}
       </div>
     </>
   );

@@ -1,0 +1,80 @@
+.arrowcontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vh;
+    margin-right: 8.1vw;
+}
+.rightarrowactivate, .rightarrowhidden, .leftarrowactivate, .leftarrowhidden{
+    @apply w-bkw flex .items-center outline-none h-h2;
+}
+
+.rightarrowactivate span{
+    @apply w-bkw absolute bg-black;
+    height: 2px;
+    transition: width 0.5s 0.5s;
+}
+
+.rightarrowhidden span{
+    width: 0px;
+}
+
+.rightarrowactivate span::before, .rightarrowactivate span::after{
+    height: 2px;
+    width: 1.2vw;
+    background-color: black;
+    position: absolute;
+    right: 0;
+    content: "";
+    transition: width 0.5s 0.5s, transform 0.5s ease-out 1s;
+}
+
+.rightarrowactivate span::before{
+    transform: rotate(30deg);
+    transform-origin: right;
+}
+
+.rightarrowactivate span::after{
+    transform: rotate(-30deg);
+    transform-origin: right;
+}
+
+.rightarrowhidden span::before, .rightarrowhidden span::after {
+    width: 0px;
+    content: "";
+}
+
+.leftarrowactivate span{
+    @apply w-bkw absolute bg-black;
+    height: 2px;
+    transition: width 0.5s 0.5s;
+}
+
+.leftarrowhidden span{
+    width: 0px;
+}
+
+.leftarrowactivate span::before, .leftarrowactivate span::after{
+    height: 2px;
+    width: 1.2vw;
+    background-color: black;
+    position: absolute;
+    left: 0;
+    content: "";
+    transition: width 0.5s 0.5s, transform 0.5s 1s;
+}
+
+.leftarrowactivate span::before{
+    transform: rotate(30deg);
+    transform-origin: left;
+}
+
+.leftarrowactivate span::after{
+    transform: rotate(-30deg);
+    transform-origin: left;
+}
+
+.leftarrowhidden span::before, .leftarrowhidden span::after {
+    width: 0px;
+    content: "";
+}

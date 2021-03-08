@@ -5,6 +5,10 @@
 .markdown h1 {
     @apply text-h1;
 }
+
+.markdown a{
+    @apply text-teal-700;
+}
   
 
 .markdown h2 {
