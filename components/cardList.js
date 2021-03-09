@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import group from '../lib/utils';
 import styles from './cardList.module.css';
 
-export default function CardList({ data, focus, bgColor }) {
+export default function CardList({
+  index, data, focus, bgColor, onPageChange,
+}) {
   const [curPage, setCurPage] = useState(0);
   const [isTransitionEnd, setIsTransitionEnd] = useState(true);
   const pages = group(data, 4);
@@ -12,6 +14,10 @@ export default function CardList({ data, focus, bgColor }) {
     setIsTransitionEnd(false);
     setCurPage(i);
   };
+  useEffect(() => {
+    console.log(data[1].tags);
+    onPageChange((curPage + 1) / numPages, index);
+  }, [curPage, numPages]);
   return (
     <div>
       <div className="flex w-full overflow-hidden">
@@ -25,7 +31,7 @@ export default function CardList({ data, focus, bgColor }) {
               onTransitionEnd={() => { setIsTransitionEnd(true); }}
             >
               <div className="absolute z-20 w-bk2wl h-hcard" style={{ 'background-image': bgColor }} />
-              <div className={`absolute z-10 w-bk2wl ${!isTransitionEnd && 'hidden'}`}>
+              <div className={`absolute z-10 w-bk2wl transition-opacity duration-500 ${!isTransitionEnd ? 'opacity-0' : 'opacity-75'}`}>
                 <img src="/冰菓/01.jpg" alt={title} className="w-auto max-w-full h-hcard object-cover" />
               </div>
               <span className={`w-bk2wl text-2xl pl-w1 pr-w1 mt-h5 z-30 transition-opacity duration-500 ${!isTransitionEnd && 'opacity-0'}`}>{title}</span>

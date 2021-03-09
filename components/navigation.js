@@ -1,6 +1,6 @@
 import styles from './navigation.module.css';
 
-export default function NavigationBar({ focus, onNaviBarClick }) {
+export default function NavigationBar({ focus, onNaviBarClick, progress }) {
   const cols = ['HOME', 'LIFE', 'RESEARCH', 'DEVELOPMENT'];
   const posMaps = [['0vw', '0vw', '0vw', '0vw'],
     ['0vw', '-16.2vw', '-16.2vw', '-32.4vw'],
@@ -25,9 +25,14 @@ export default function NavigationBar({ focus, onNaviBarClick }) {
             >
               <span className={`${focus === 0 ? 'text-black' : 'text-white'} ${styles.text}`}>{c}</span>
               { focus === i
-                ? <span className={`w-half h-line z-10 ${focus === 0 ? 'bg-black' : 'bg-white'} ${styles.progress}`} />
+                ? (
+                  <span
+                    className={`z-10 ${focus === 0 ? 'bg-black' : 'bg-white'} ${styles.progress}`}
+                    style={i === 0 ? { width: '50%' } : { width: `${progress[i - 1] * 100}%` }}
+                  />
+                )
                 : <span className={styles.progress} />}
-              <span className={`w-full h-line bg-gray-400 ${styles.back}`} />
+              <span className={styles.back} />
             </div>
           );
         })

@@ -12,21 +12,25 @@
 
 .navigationButton .text{
     visibility: visible;
-    transition: visibility 0.5s ease-out, width 0.5s ease-out, color 0.5s ease-out;
+    opacity: 1;
+    transition: opacity 0.5s ease-out, width 0.5s ease-out, color 0.5s ease-out, visibility 0.5s ease-out;
 }
 
 .navigationButton .progress{
     @apply mt-h2;
+    height: 2px;
     transition: width 0.5s ease-out, background-color 0.5s ease-out;
 }
 
 .navigationButton .back{
-    @apply w-full h-line bg-gray-400;
+    @apply w-full bg-gray-500 absolute bottom-0 opacity-75;
+    height: 2px;
     transition: width 0.5s ease-out, background-color 0.5s ease-out;
 }
 
 .navigationButtonHidden .text{
     visibility: hidden;
+    opacity: 0;
     width: 0vw;
 }
 

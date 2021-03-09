@@ -3,9 +3,9 @@ title: 'Note:SmartAdp'
 date: '2017-12-16 11:27:13'
 tags: 
 - Geovisualization
-- spatial data analysis
 
 category: Research
+image: 
 ---
 [论文原文地址](http://www.cad.zju.edu.cn/home/ycwu/projects/smartadp.html)
 

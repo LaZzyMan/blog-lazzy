@@ -5,6 +5,7 @@ tags:
 - Bayesian
 
 category: Research
+image:
 ---
 
 记录三篇与贝叶斯分类器物体检测算法的论文核心内容。

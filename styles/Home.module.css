@@ -1,6 +1,6 @@
 .pos_0, .pos_1, .pos_2, .pos_3, .pos_n1, .pos_n2, .pos_n3{
   transition: top 0.5s ease-out;
-  @apply relative pr-bklfixed;
+  @apply relative pr-bkl;
 }
 
 .pos_0{

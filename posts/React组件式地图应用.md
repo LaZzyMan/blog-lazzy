@@ -3,11 +3,9 @@ title: React组件式地图应用
 date: '2018-03-29 16:58:29'
 tags:
 - react
-- webpack
-- mapbox
-- 前端
 
 category: Development
+image: /React组件式地图应用/002.jpg
 ---
 
 - 使用react框架和MapboxJS搭建一个简单的地图应用，实现在底图上进行WSM服务和WFS服务的框选式覆盖功能，以及基本的图层管理。
@@ -151,7 +149,7 @@ const SubMenu = Menu.SubMenu;
       </Layout>
 ```
 效果如图：
-![antd](React组件式地图应用/003.jpg)
+![antd](../public/React组件式地图应用/003.jpg)
 
 创建urls.js，用于存储收集到的WMS和WFS服务的URL
 
@@ -268,7 +266,7 @@ class App extends React.Component {
 
 得到的导航栏效果如下：
 
-![nav](React组件式地图应用/004.jpg)
+![nav](../public/React组件式地图应用/004.jpg)
 
 ----
 
@@ -448,7 +446,7 @@ if(serviceType===0){
 注意到WFS和WMS添加的分别为矢量图层和栅格图层，关于其更多的设置信息和其他图层形式，参考[Mapbox官方文档](https://www.mapbox.com/mapbox-gl-js/api/#sources)。
 
 在地图上尝试添加WMS/WFS服务：
-![Draw控件](React组件式地图应用/002.jpg)
+![Draw控件](../public/React组件式地图应用/002.jpg)
 
 未完待续...
 

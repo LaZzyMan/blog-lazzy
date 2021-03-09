@@ -2,10 +2,11 @@
 title: Nginx配置前后端分离Web App
 tags: 
 - nginx
-- App部署
+
 date: '2018-03-15 20:02:56'
 
 category: Development
+image:
 ---
 
 

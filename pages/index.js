@@ -5,27 +5,26 @@ import CardList from '../components/cardList';
 import Hello from '../components/hello';
 import Layout from '../components/layout';
 import getSortedPostsData from '../lib/posts';
+import {
+  blogClasses, cardColormap, mood1, mood2, mood3, siteTitle
+} from '../lib/settings';
 import styles from '../styles/Home.module.css';
-
-const siteTitle = 'Blog of LaZzY';
-const mood2 = 'but This is ';
-const mood1 = 'There is Nothing Meaningful';
-const mood3 = 'Me.';
-const blogClasses = ['Life', 'Research', 'Development'];
-
-const cardColormap = ['linear-gradient(to bottom left, rgba(240, 216, 121,0),  rgba(240, 216, 121,0.9), rgba(240, 216, 121,1.0))',
-  'linear-gradient(to bottom left, rgba(232, 104, 80,0),  rgba(232, 104, 80,0.9), rgba(232, 104, 80,1.0))',
-  'linear-gradient(to bottom left, rgba(222, 121, 33,0),  rgba(222, 121, 33,0.9), rgba(222, 121, 33,1.0))'];
 
 export default function Home({ allPostsData }) {
   const [focus, setFocus] = useState(0);
   const [isTransitionEnd, setIsTransitionEnd] = useState(true);
+  const [curProgress, setCurProgress] = useState([0, 0, 0]);
   const cardPosStyles = [styles.pos_0, styles.pos_n1, styles.pos_n2, styles.pos_n3];
   const handleNaviBarClick = (i) => {
     if (isTransitionEnd) {
       setFocus(i);
       setIsTransitionEnd(false);
     }
+  };
+  const handlePageChange = (progress, i) => {
+    const newProgress = [...curProgress];
+    newProgress[i] = progress;
+    setCurProgress(newProgress);
   };
   return (
     <div
@@ -39,7 +38,7 @@ export default function Home({ allPostsData }) {
       }}
     >
       <Background focus={focus} />
-      <Layout home onNaviBarClick={handleNaviBarClick} focus={focus}>
+      <Layout home onNaviBarClick={handleNaviBarClick} focus={focus} naviProgress={curProgress}>
         <Head>
           <title>{siteTitle}</title>
           <link rel="icon" href="/img/favicon.ico" />
@@ -62,6 +61,8 @@ export default function Home({ allPostsData }) {
                 data={allPostsData.filter(({ category }) => (c === category))}
                 focus={focus === i + 1}
                 bgColor={cardColormap[i]}
+                onPageChange={handlePageChange}
+                index={i}
               />
             </div>
           ))}

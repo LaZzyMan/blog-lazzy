@@ -6,7 +6,7 @@ const name = 'Seigo Natsume';
 const description = '日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。';
 
 export default function Layout({
-  home, children, onNaviBarClick, focus,
+  home, children, onNaviBarClick, focus, naviProgress,
 }) {
   return (
     <>
@@ -20,6 +20,7 @@ export default function Layout({
           description={description}
           focus={focus}
           onNaviBarClick={onNaviBarClick}
+          naviProgress={naviProgress}
         />
         {children}
       </div>

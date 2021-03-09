@@ -4,7 +4,7 @@ import MenuBtn from './menuBtn';
 import NavigationBar from './navigation';
 
 export default function Header({
-  name, description, focus, onNaviBarClick, home,
+  name, description, focus, onNaviBarClick, home, naviProgress,
 }) {
   return (
     <header className={styles.header}>
@@ -31,7 +31,7 @@ export default function Header({
       </section>
       {home && (
       <section className="mt-h5">
-        <NavigationBar focus={focus} onNaviBarClick={onNaviBarClick} />
+        <NavigationBar focus={focus} onNaviBarClick={onNaviBarClick} progress={naviProgress} />
       </section>
       )}
     </header>

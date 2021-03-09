@@ -4,6 +4,7 @@ date: '2018-08-06 21:42:54'
 tags:
 
 category: Development
+image:
 ---
 
 ## Scale
@@ -28,7 +29,7 @@ const myScale = d3.scaleLinear()
     - scaleTime：和scaleLinear是类似的，唯一的区别是domain用于代表date的数组
     - scaleSequential：用于将连续性的数据映射为由预定义或者定制的插值函数决定的range.(一个插值函数是一个接受0到1之间的数值而输出一个在两个数字，两个颜色值或者两个字符串之间的插值的函数）,插值函数通过interpolator()设置，可以使用D3预设的颜色插值：
 
-    - ![D3 color](D3-js笔记/001.png)
+    - ![D3 color](../public/D3-js笔记/001.png)
     - Clamping：默认情况下 scaleLinear, scalePow, scaleSqrt, scaleLog, scaleTime and scaleSequential 允许输入值在domain范围之外，使用clamp()可以限定输出在domain之内。
     - Nice：使用nice()将起始和结果数据规定为整数。
     - incert：使用invert()可以将range与domain对调。
