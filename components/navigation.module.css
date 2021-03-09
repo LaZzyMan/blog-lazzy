@@ -1,0 +1,39 @@
+.navigationContainer{
+    @apply flex flex-row ml-bklw absolute;
+}
+
+.navigationButton{
+    @apply mr-bkl w-bk2wl flex flex-col outline-none relative left-0;
+}
+
+.navigationButton{
+    transition: left 0.5s ease-out, color 0.5s ease-out;
+}
+
+.navigationButton .text{
+    visibility: visible;
+    transition: visibility 0.5s ease-out, width 0.5s ease-out, color 0.5s ease-out;
+}
+
+.navigationButton .progress{
+    @apply mt-h2;
+    transition: width 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.navigationButton .back{
+    @apply w-full h-line bg-gray-400;
+    transition: width 0.5s ease-out, background-color 0.5s ease-out;
+}
+
+.navigationButtonHidden .text{
+    visibility: hidden;
+    width: 0vw;
+}
+
+.navigationButtonHidden .progress{
+    width: 0vw;
+}
+
+.navigationButtonHidden .back{
+    width: 0vw;
+}

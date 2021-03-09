@@ -27,10 +27,10 @@ module.exports = {
         h2: '2vh',
         h5: '5vh',
         h10: '10vh',
-        h32: '32vh',
+        h27: '27vh',
         hcard: '45vh',
         hmain: '35vh',
-        hsection: '63vh',
+        hsection: '68vh',
       },
       zIndex: {
         bottom: '-1',
@@ -53,7 +53,7 @@ module.exports = {
         h5: '5vh',
         h10: '10vh',
         hcard: '45vh',
-        hsection: '63vh',
+        hsection: '68vh',
       },
       fontSize: {
         title: '5rem',

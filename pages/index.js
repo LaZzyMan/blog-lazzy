@@ -13,6 +13,10 @@ const mood1 = 'There is Nothing Meaningful';
 const mood3 = 'Me.';
 const blogClasses = ['Life', 'Research', 'Development'];
 
+const cardColormap = ['linear-gradient(to bottom left, rgba(240, 216, 121,0),  rgba(240, 216, 121,0.9), rgba(240, 216, 121,1.0))',
+  'linear-gradient(to bottom left, rgba(232, 104, 80,0),  rgba(232, 104, 80,0.9), rgba(232, 104, 80,1.0))',
+  'linear-gradient(to bottom left, rgba(222, 121, 33,0),  rgba(222, 121, 33,0.9), rgba(222, 121, 33,1.0))'];
+
 export default function Home({ allPostsData }) {
   const [focus, setFocus] = useState(0);
   const [isTransitionEnd, setIsTransitionEnd] = useState(true);
@@ -43,7 +47,7 @@ export default function Home({ allPostsData }) {
           <meta name="description" content="Home page of LaZzY." />
           <meta name="author" content="LaZzY" />
         </Head>
-        <section className="ml-bklw overflow-hidden mt-h32 h-hsection absolute w-wsection">
+        <section className="ml-bklw overflow-hidden mt-h27 h-hsection absolute w-wsection">
           <div className={`${cardPosStyles[focus]} h-hsection`} onTransitionEnd={() => setIsTransitionEnd(true)}>
             <Hello
               mood1={mood1}
@@ -57,6 +61,7 @@ export default function Home({ allPostsData }) {
               <CardList
                 data={allPostsData.filter(({ category }) => (c === category))}
                 focus={focus === i + 1}
+                bgColor={cardColormap[i]}
               />
             </div>
           ))}

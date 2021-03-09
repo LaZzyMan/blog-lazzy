@@ -11,7 +11,7 @@ export default function Hello({
         <span className="text-black text-title">{mood3}</span>
       </div>
       <div
-        className="flex justify-center mt-h5 outline-none"
+        className="flex justify-center mt-h10 outline-none"
         onClick={() => onClickDown(1)}
         onKeyDown={() => onClickDown(1)}
         tabIndex={0}
