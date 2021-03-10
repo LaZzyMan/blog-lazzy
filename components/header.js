@@ -27,7 +27,7 @@ export default function Header({
         </span>
         )}
 
-        <MenuBtn />
+        <MenuBtn focus={focus} />
       </section>
       {home && (
       <section className="mt-h5">

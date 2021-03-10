@@ -11,10 +11,14 @@ import {
 import styles from '../styles/Home.module.css';
 
 export default function Home({ allPostsData }) {
+  const cardPosStyles = [styles.pos_0, styles.pos_n1, styles.pos_n2, styles.pos_n3];
+  const classedPosts = blogClasses.map((c) => (
+    allPostsData.filter(({ category }) => (c === category))));
   const [focus, setFocus] = useState(0);
   const [isTransitionEnd, setIsTransitionEnd] = useState(true);
-  const [curProgress, setCurProgress] = useState([0, 0, 0]);
-  const cardPosStyles = [styles.pos_0, styles.pos_n1, styles.pos_n2, styles.pos_n3];
+  const [curProgress, setCurProgress] = useState(
+    classedPosts.map((c) => (1 / Math.ceil(c.length / 4))),
+  );
   const handleNaviBarClick = (i) => {
     if (isTransitionEnd) {
       setFocus(i);
@@ -56,7 +60,7 @@ export default function Home({ allPostsData }) {
             />
           </div>
           {blogClasses.map((c, i) => (
-            <div className={`${cardPosStyles[focus]} h-hsection pt-h2`}>
+            <div className={`${cardPosStyles[focus]} h-hsection pt-h2`} key={c}>
               <CardList
                 data={allPostsData.filter(({ category }) => (c === category))}
                 focus={focus === i + 1}

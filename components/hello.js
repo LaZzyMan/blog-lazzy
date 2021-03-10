@@ -13,7 +13,6 @@ export default function Hello({
       <div
         className="flex justify-center mt-h10 outline-none"
         onClick={() => onClickDown(1)}
-        onKeyDown={() => onClickDown(1)}
         tabIndex={0}
         role="button"
       >

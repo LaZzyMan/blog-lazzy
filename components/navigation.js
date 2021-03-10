@@ -15,11 +15,11 @@ export default function NavigationBar({ focus, onNaviBarClick, progress }) {
           const pos = { left: posMaps[focus][i] };
           return (
             <div
+              key={c}
               className={`${styles.navigationButton} 
             ${((focus !== 0) && (focus !== i)) && styles.navigationButtonHidden}`}
               style={pos}
               onClick={focus === 0 ? (() => onNaviBarClick(i)) : null}
-              onKeyDown={focus === 0 ? (() => onNaviBarClick(i)) : null}
               role="button"
               tabIndex={0}
             >

@@ -10,10 +10,17 @@
     position: absolute;
 }
 
+.white span, .white span::before, .white span::after{
+    background-color: white;
+}
+
+.dark span, .dark span::before, .dark span::after{
+    background-color: black;
+}
+
 .triggered span::before, .triggered span::after{
     height: 1px;
     width: 2vh;
-    background-color: black;
     position: absolute;
     left: 0;
     content: "";
@@ -22,7 +29,6 @@
 .normal span::before, .normal span::after{
     height: 1px;
     width: 2vh;
-    background-color: black;
     position: absolute;
     left: 0;
     content: "";
@@ -31,7 +37,6 @@
 .triggered span {
     transition: transform 0.3s 0.3s cubic-bezier(0.91, 0.03, 0.12, 1), 
     background 0.2s cubic-bezier(0.91, 0.03, 0.12, 1);
-    background-color: white;
     transform: rotate(45deg);
 }
 
@@ -40,14 +45,12 @@
     background 0.5s 1s cubic-bezier(0.91, 0.03, 0.12, 1), 
     box-shadow 1s cubic-bezier(0.91, 0.03, 0.12, 1);
     transform-origin: center center;
-    background-color: black;    
 }
 
 .triggered span::before {
     transition: transform 0.2s 0.3s cubic-bezier(0.91, 0.03, 0.12, 1), 
     background 0.2s cubic-bezier(0.91, 0.03, 0.12, 1);
     transform: rotate(90deg) translateX(-8px);
-    background-color: white;
 }
 
 .normal span::before {
@@ -62,7 +65,6 @@
     opacity 0s 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
     background 0.2s cubic-bezier(0.91, 0.03, 0.12, 1);
     transform: rotate(90deg) translateX(-8px);
-    background-color: white;
 }
 
 .normal span::after {
@@ -71,5 +73,4 @@
     background 0.5s 1s cubic-bezier(0.91, 0.03, 0.12, 1), 
     box-shadow 1s cubic-bezier(0.91, 0.03, 0.12, 1);
     top: 8px;
-
 }
