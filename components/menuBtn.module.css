@@ -1,7 +1,10 @@
 .container {
     padding-top: 1vh;
-    margin-left: auto;
-    margin-right: 3.3vw;
+    width: 2vh;
+    height: 2vh;
+    position: absolute;
+    right: calc( 3.3vw - 2vh);
+    outline: none;
 }
 
 .container span {
@@ -35,42 +38,37 @@
 }
 
 .triggered span {
-    transition: transform 0.3s 0.3s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    background 0.2s cubic-bezier(0.91, 0.03, 0.12, 1);
+    transition: transform 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
+    background 0.5s cubic-bezier(0.91, 0.03, 0.12, 1);
     transform: rotate(45deg);
 }
 
 .normal span {
-    transition: transform 0.3s 1.1s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    background 0.5s 1s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    box-shadow 1s cubic-bezier(0.91, 0.03, 0.12, 1);
+    transition: transform 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
+    background 0.5s cubic-bezier(0.91, 0.03, 0.12, 1);
     transform-origin: center center;
 }
 
 .triggered span::before {
-    transition: transform 0.2s 0.3s cubic-bezier(0.91, 0.03, 0.12, 1), 
+    transition: transform 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
     background 0.2s cubic-bezier(0.91, 0.03, 0.12, 1);
-    transform: rotate(90deg) translateX(-8px);
+    transform: rotate(90deg);
 }
 
 .normal span::before {
-    transition: transform 0.2s 1.1s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    background 0.5s 1s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    box-shadow 1s cubic-bezier(0.91, 0.03, 0.12, 1);
-    top: -8px;
+    transition: transform 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
+    background 0.5s cubic-bezier(0.91, 0.03, 0.12, 1);
+    top: -0.6vh;
 }
 
 .triggered span::after {
-    transition: transform 0.2s 0.3s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    opacity 0s 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
+    transition: transform 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
     background 0.2s cubic-bezier(0.91, 0.03, 0.12, 1);
-    transform: rotate(90deg) translateX(-8px);
+    transform: rotate(90deg);
 }
 
 .normal span::after {
-    transition: transform 0.2s 1.1s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    opacity 0s 1.3s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    background 0.5s 1s cubic-bezier(0.91, 0.03, 0.12, 1), 
-    box-shadow 1s cubic-bezier(0.91, 0.03, 0.12, 1);
-    top: 8px;
+    transition: transform 0.5s cubic-bezier(0.91, 0.03, 0.12, 1), 
+    background 0.5s cubic-bezier(0.91, 0.03, 0.12, 1);
+    top: 0.6vh;
 }
