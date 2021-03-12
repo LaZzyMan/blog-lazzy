@@ -30,7 +30,7 @@ const renderers = {
 };
 
 export default function Post({ postData }) {
-  const { data, error } = useSWR(`/api/post/${postData.id}`, (url) => fetch(url).then((res) => res.json()));
+  const { data } = useSWR(`/api/post/${postData.id}`, (url) => fetch(url).then((res) => res.json()));
   return (
     <article className="ml-bklw mr-bklw">
       <h1 className={styles.postHead}>{postData.title}</h1>
