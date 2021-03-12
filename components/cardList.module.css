@@ -1,3 +1,42 @@
+.cardListContainer{
+    transform-style: preserve-3d;
+    perspective: 3000px;
+    @apply flex w-full overflow-hidden;
+}
+
+.cardContainer{
+    transform: rotateY(0deg);
+    transform-origin: left;
+    outline: none;
+    @apply text-white mr-bkl flex flex-col justify-between h-hcard transition-transform duration-500 ease-in-out;
+}
+
+.cardContainer:hover{
+    transform-origin: left;
+    transform: rotateY(30deg);
+}
+
+.cardChange:hover{
+    transform-origin: left;
+    transform: rotateY(390deg);
+}
+
+.cardChange{
+    transform-origin: left;
+    transform: rotateY(360deg);
+}
+
+.cardCover{
+    @apply absolute z-20 w-bk2wl h-hcard;
+}
+.cardImage{
+    opacity: 0.75;
+    @apply absolute z-10 w-bk2wl transition-opacity duration-500;
+}
+.cardImage img{
+    @apply w-auto max-w-full h-hcard object-cover;
+}
+
 .arrowcontainer{
     display: flex;
     flex-direction: row;

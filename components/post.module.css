@@ -1,6 +1,13 @@
+.postHead{
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -0.05rem;
+    margin-bottom: 2vh;
+}
 .postContainer{
     overflow: auto;
-    @apply h-hpost absolute w-wpost;
+    @apply h-hpost w-wpost;
 }
 .postContainer::-webkit-scrollbar{
     display: none;

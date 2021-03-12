@@ -30,3 +30,10 @@
 .pos_n3{
   top: -204vh;
 }
+
+.postSection{
+  position: absolute;
+  transition: top 0.5s ease-out;
+  width: 78.4vw;
+  left: 10.7vw;
+}
