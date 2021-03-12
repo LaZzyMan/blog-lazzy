@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import CardList from '../components/cardList';
 import Hello from '../components/hello';
@@ -21,6 +22,7 @@ export default function Home({ allPostsData }) {
   const [curProgress, setCurProgress] = useState(
     classedPosts.map((c) => (1 / Math.ceil(c.length / 4))),
   );
+  const router = useRouter();
   const handleNaviBarClick = (i) => {
     if (isTransitionEnd) {
       setFocus(i);
@@ -31,8 +33,10 @@ export default function Home({ allPostsData }) {
     setCurDisplay(id);
     if (id === 'home') {
       setTitle(siteTitle);
+      router.push('/', undefined, { shallow: true });
     } else {
       setTitle(allPostsData.find((i) => (i.id === id)).title);
+      router.push(`/?id=${id}`, undefined, { shallow: true });
     }
   };
   const handlePageChange = (progress, i) => {
