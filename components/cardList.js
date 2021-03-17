@@ -40,7 +40,7 @@ export default function CardList({
             <div className={`${styles.cardImage} ${!isTransitionEnd && 'opacity-0'}`}>
               <img src={image} alt="" />
             </div>
-            <span className={`w-bk2wl text-2xl pl-w1 pr-w1 mt-h5 z-30 transition-opacity duration-500 ${!isTransitionEnd && 'opacity-0'}`}>{title}</span>
+            <span className={`w-bk2wl text-h4 pl-w1 pr-w1 mt-h5 z-30 transition-opacity duration-500 ${!isTransitionEnd && 'opacity-0'}`}>{title}</span>
             <div className={`flex flex-row mb-h2 w-bk2wl justify-between pr-w1 z-30 transition-opacity duration-500 ${!isTransitionEnd && 'opacity-0'}`}>
               <span className="pl-w1 text-right pr-w1">{tags}</span>
               <div className="flex flex-col text-gray-400">
