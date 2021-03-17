@@ -60,3 +60,11 @@
     @apply pl-4;
     @apply text-gray-600;
 }
+
+.markdown pre {
+    border-radius: 5px;
+}
+
+.markdown img {
+    box-shadow: 5px 5px 5px gray;
+}
