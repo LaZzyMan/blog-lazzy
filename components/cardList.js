@@ -44,8 +44,8 @@ export default function CardList({
             <div className={`flex flex-row mb-h2 w-bk2wl justify-between pr-w1 z-30 transition-opacity duration-500 ${!isTransitionEnd && 'opacity-0'}`}>
               <span className="pl-w1 text-right pr-w1">{tags}</span>
               <div className="flex flex-col text-gray-400">
-                <span className="text-right text-xs">{date.split(' ')[1]}</span>
-                <span className="text-right text-xs">{date.split(' ')[0]}</span>
+                <span className="text-right text-content">{date.split(' ')[1]}</span>
+                <span className="text-right text-content">{date.split(' ')[0]}</span>
               </div>
             </div>
           </div>
