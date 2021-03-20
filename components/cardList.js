@@ -42,7 +42,7 @@ export default function CardList({
             </div>
             <span className={`w-bk2wl text-h4 pl-w1 pr-w1 mt-h5 z-30 transition-opacity duration-500 ${!isTransitionEnd && 'opacity-0'}`}>{title}</span>
             <div className={`flex flex-col mb-h2 w-bk2wl justify-between pr-w1 z-30 transition-opacity duration-500 ${!isTransitionEnd && 'opacity-0'}`}>
-              <span className="pl-w1 text-right pb-h1">{tags}</span>
+              <span className="pl-w1 text-right pb-h1 text-content">{tags}</span>
               <div className="flex flex-col text-gray-400">
                 <span className="text-right text-content">{date.split(' ')[1]}</span>
                 <span className="text-right text-content">{date.split(' ')[0]}</span>
