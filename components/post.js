@@ -55,7 +55,7 @@ export default function Post({ postData, focus }) {
   const { data } = useSWR(`/api/post/${postData.id}`, (url) => fetch(url).then((res) => res.json()));
   const handleScroll = (e) => {
     const { scrollHeight, scrollTop, offsetHeight } = e.target;
-    setProgress(Math.round(((offsetHeight + scrollTop) / scrollHeight) * 100));
+    setProgress((Math.round((offsetHeight + scrollTop) / scrollHeight) * 100));
   };
   useEffect(() => {
     const { scrollHeight, offsetHeight } = document.getElementById('scrollArea');
