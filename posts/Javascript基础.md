@@ -1,5 +1,5 @@
 ---
-title: javascript基础（未完成）
+title: javascript基础
 date: '2021-03-02 22:01:06'
 tags: 
 - javascript
@@ -1373,6 +1373,8 @@ function throttle(f, ms) {
   let savedThis;
   function wrapper() {
     if (isThrottled) {
+      savedArgs = arguments;
+      savedThis = this;
       return
     }
     f.apply(this, arguments);

@@ -89,7 +89,7 @@ export default function Home({ allPostsData }) {
         style={curDisplay === 'home' ? { top: '-100vh' } : { top: '2.6vw' }}
       >
         {curDisplay !== 'home'
-        && (<Post postData={allPostsData.find((i) => i.id === curDisplay)} />)}
+        && (<Post postData={allPostsData.find((i) => i.id === curDisplay)} focus={focus} />)}
       </section>
     </Layout>
   );
