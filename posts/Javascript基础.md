@@ -2267,6 +2267,10 @@ alert( Rabbit.__proto__ === Object ); // (2) true
 
 ### Promise，async/await
 
+Promise实例具有内部属性：
+- state：最初是 "pending"，然后在 resolve 被调用时变为 "fulfilled"，或者在 reject 被调用时变为 "rejected"。
+- result：最初是 undefined，然后在 resolve(value) 被调用时变为 value，或者在 reject(error) 被调用时变为 error。
+
 Error 优先回调（error-first callback）”风格：
 - callback 的第一个参数是为 error 而保留的。一旦出现 error，callback(err) 就会被调用。
 - 第二个参数（和下一个参数，如果需要的话）用于成功的结果。此时 callback(null, result1, result2…) 就会被调用。
@@ -2278,8 +2282,8 @@ let promise = new Promise(function(resolve, reject) {
   // executor（生产者代码）
 });
 
-//.then 的第一个参数是一个函数，该函数将在 promise resolved 后运行并接收结果。
-//.then 的第二个参数也是一个函数，该函数将在 promise rejected 后运行并接收 error。
+//.then 的第一个参数是一个函数，该函数将在 promise中调用resolve方法后运行并接收resolve返回的结果。
+//.then 的第二个参数也是一个函数，该函数将在promise中调用rejecte方法后运行并接收reject传递的error信息。
 promise.then(
   function(result) { /* handle a successful result */ },
   function(error) { /* handle an error */ }
@@ -2303,3 +2307,126 @@ new Promise((resolve, reject) => {
   // 所以，加载指示器（loading indicator）始终会在我们处理结果/错误之前停止
   .then(result => show result, err => show error)
 ```
+
+#### Promise链
+
+Promise的链式调用会使得 result 通过 .then 处理程序（handler）链进行传递。
+```js
+new Promise(function(resolve, reject) {
+
+  setTimeout(() => resolve(1), 1000); // (*)
+
+}).then(function(result) { // (**)
+
+  alert(result); // 1
+  return result * 2;
+
+}).then(function(result) { // (***)
+
+  alert(result); // 2
+  return result * 2;
+
+}).then(function(result) {
+
+  alert(result); // 4
+  return result * 2;
+
+});
+```
+从技术上讲，我们也可以将多个 .then 添加到一个 promise 上。但这并不是 promise 链（chaining），它们只是Promise的几个处理程序，不会相互传递 result；相反，它们之间彼此独立运行处理任务。
+
+.then(handler)中的handler可以创建并返回一个Promise，在这种情况下，其他的处理程序（handler）将等待它settled之后再获得其结果（result）。
+
+```js
+new Promise(function(resolve, reject) {
+
+  setTimeout(() => resolve(1), 1000);
+
+}).then(function(result) {
+
+  alert(result); // 1
+
+  return new Promise((resolve, reject) => { // (*)
+    setTimeout(() => resolve(result * 2), 1000);
+  });
+
+}).then(function(result) { // (**)
+
+  alert(result); // 2
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(result * 2), 1000);
+  });
+
+}).then(function(result) {
+
+  alert(result); // 4
+
+});
+```
+
+Promise 链在错误（error）处理中十分强大。当一个 promise 被 reject 时，控制权将移交至最近的 rejection 处理程序（handler）。这在实际开发中非常方便。捕获所有 error 的最简单的方法是，将 .catch 附加到链的末尾，并且位于最后的 .catch 不仅会捕获显式的 rejection，还会捕获它上面的处理程序（handler）中意外出现的 error：
+
+```js
+fetch('/article/promise-chaining/user.json')
+  .then(response => response.json())
+  .then(user => fetch(`https://api.github.com/users/${user.name}`))
+  .then(response => response.json())
+  .then(githubUser => new Promise((resolve, reject) => {
+    let img = document.createElement('img');
+    img.src = githubUser.avatar_url;
+    img.className = "promise-avatar-example";
+    document.body.append(img);
+
+    setTimeout(() => {
+      img.remove();
+      resolve(githubUser);
+    }, 3000);
+  }))
+  .catch(error => alert(error.message));
+```
+
+#### Promise.all()
+
+结果数组中元素的顺序与其在源 promise 中的顺序相同。即使第一个 promise 花费了最长的时间才 resolve，但它仍是结果数组中的第一个。
+
+如果任意一个 promise 被 reject，由 Promise.all 返回的 promise 就会立即 reject，并且带有的就是这个 error。
+如果其中一个 promise 被 reject，Promise.all 就会立即被 reject，完全忽略列表中其他的 promise。它们的结果也被忽略。
+然而Promise.all只会忽略这些promise的结果，而不是停止他们的执行。
+
+```js
+
+let promise = Promise.all([...promises...]);
+
+Promise.all([
+  new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
+  new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
+  new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
+]).then(alert); // 1,2,3 当上面这些 promise 准备好时：每个 promise 都贡献了数组中的一个元素
+
+let names = ['iliakan', 'remy', 'jeresig'];
+
+let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
+
+Promise.all(requests)
+  .then(responses => {
+    // 所有响应都被成功 resolved
+    for(let response of responses) {
+      alert(`${response.url}: ${response.status}`); // 对应每个 url 都显示 200
+    }
+
+    return responses;
+  })
+  // 将响应数组映射（map）到 response.json() 数组中以读取它们的内容
+  .then(responses => Promise.all(responses.map(r => r.json())))
+  // 所有 JSON 结果都被解析："users" 是它们的数组
+  .then(users => users.forEach(user => alert(user.name)));
+```
+
+#### Promise.allSettled()
+
+与all不同，Promise.allSettled 等待所有的 promise 都被 settle，无论结果如何。结果数组具有：
+
+- {status:"fulfilled", value:result} 对于成功的响应，
+- {status:"rejected", reason:error} 对于 error。
+
