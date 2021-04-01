@@ -1,5 +1,5 @@
 import 'katex/dist/katex.min.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BlockMath, InlineMath } from 'react-katex';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -50,35 +50,60 @@ const renderers = {
   },
 };
 
-export default function Post({ postData, focus }) {
+const Article = React.memo(({ text }) => (
+  <ReactMarkdown
+    className={styles.markdown}
+    plugins={[gfm, math]}
+    renderers={renderers}
+    transformImageUri={(url) => (url.match('../public') ? url.substring(9) : `/${url}`)}
+  >
+    {text}
+  </ReactMarkdown>
+));
+
+function Post({ postData, focus }) {
+  const [scrollHeight, setScrollHeight] = useState(0);
+  const [offsetHeight, setOffsetHeight] = useState(0);
   const [progress, setProgress] = useState(0);
   const { data } = useSWR(`/api/post/${postData.id}`, (url) => fetch(url).then((res) => res.json()));
   const handleScroll = (e) => {
-    const { scrollHeight, scrollTop, offsetHeight } = e.target;
-    setProgress(Math.round(((offsetHeight + scrollTop) / scrollHeight) * 100));
+    if (e.deltaY > 0 && (progress + offsetHeight) < scrollHeight) {
+      setProgress((prev) => prev + 200);
+    }
+    if (e.deltaY < 0 && progress > 0) {
+      setProgress((prev) => prev - 200);
+    }
+  };
+  const onScreenResize = () => {
+    const elem = document.getElementById('scrollArea');
+    setScrollHeight(elem.scrollHeight + 200);
+    setOffsetHeight(elem.offsetHeight);
   };
   useEffect(() => {
-    const { scrollHeight, offsetHeight } = document.getElementById('scrollArea');
-    setProgress(Math.round((100 * offsetHeight) / scrollHeight));
+    window.addEventListener('resize', onScreenResize);
+    return () => {
+      window.removeEventListener('resize', onScreenResize);
+    };
+  }, []);
+  useEffect(() => {
+    onScreenResize();
   }, [data]);
   return (
-    <article className="ml-bklw mr-bklw">
-      <ProgressBar percent={progress} focus={focus} />
+    <article className="pl-bklw pr-bklw" onWheel={(e) => throttle(handleScroll, 100)(e)}>
+      <ProgressBar
+        percent={Math.round((100 * (offsetHeight + progress)) / scrollHeight)}
+        focus={focus}
+      />
       <h1 className={styles.postHead}>{postData.title}</h1>
       <div className="text-gray-500">
         <Date dateString={postData.date} />
       </div>
-      <div id="scrollArea" className={styles.postContainer} onScroll={(e) => throttle(handleScroll, 300)(e)}>
+      <div id="scrollArea" className={styles.postContainer}>
         {data
           ? (
-            <ReactMarkdown
-              className={styles.markdown}
-              plugins={[gfm, math]}
-              renderers={renderers}
-              transformImageUri={(url) => (url.match('../public') ? url.substring(9) : `/${url}`)}
-            >
-              {data.content}
-            </ReactMarkdown>
+            <div className={styles.scrollContent} style={{ transform: `translateY(${-progress}px)` }}>
+              <Article text={data.content} />
+            </div>
           )
           : (
             <div className="flex justify-center relative" style={{ top: '30%' }}>
@@ -112,3 +137,5 @@ export default function Post({ postData, focus }) {
     </article>
   );
 }
+
+export default React.memo(Post);

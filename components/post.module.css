@@ -6,8 +6,12 @@
     margin-bottom: 2vh;
 }
 .postContainer{
-    overflow: auto;
+    overflow: hidden;
     @apply h-hpost w-wpost;
+}
+.scrollContent{
+    transition: transform .2s ease;
+    position: relative;
 }
 .postContainer::-webkit-scrollbar{
     display: none;
