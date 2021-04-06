@@ -161,3 +161,18 @@ display:inline
 display:inline-block
 
 - 简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（a元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。
+
+## css居中策略
+
+水平居中：
+
+- inline元素 text-align: center
+- block元素 margin: 0 auto
+- 多个block元素 转为inline-block，父组件text-align: center
+- display: flex; justify-content: center
+
+垂直居中：
+
+- inline元素 line-height=height
+- display: flex; align-items: center;
+- block元素：top:50%;transform: translateY(50%)(高度已知可以直接设置top)
