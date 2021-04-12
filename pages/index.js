@@ -86,7 +86,7 @@ export default function Home({ allPostsData }) {
       </section>
       <section
         className={styles.postSection}
-        style={curDisplay === 'home' ? { top: '-100vh' } : { top: '2.6vw' }}
+        style={curDisplay === 'home' ? { top: '-100vh' } : { top: '0vh' }}
       >
         {curDisplay !== 'home'
         && (<Post postData={allPostsData.find((i) => i.id === curDisplay)} focus={focus} />)}

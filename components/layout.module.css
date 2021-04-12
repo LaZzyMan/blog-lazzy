@@ -6,3 +6,17 @@
   .backToHome {
     margin: 3rem 0 0;
   }
+
+  .mouse {
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+    margin-top: -10px;
+    margin-left: -10px;
+    transform: translate(var(--mouse-x), var(--mouse-y));
+    height: 20px;
+    width: 20px;
+    background: rgba(255, 255, 255, .3);
+    transition: transform 0.1s ease-out;
+    border-radius: 10px;
+  }
