@@ -1,11 +1,12 @@
 .progressBarBK{
-    height: 1vh;
-    top: calc(-2.6vw - 1vh);
+    max-height: 1vh;
+    top: -2.6vw;
     background-color: gray;
     border-bottom-right-radius: 1vh;
     border-bottom-left-radius: 1vh;
     position: relative;
-    z-index: -1;
+    z-index: 20;
+    transition: all .2s ease .2s;
 }
 
 .progressBar{
@@ -14,8 +15,8 @@
     background-color: goldenrod;
     content: '';
     position: relative;
-    top: -2.6vw;
     border-bottom-left-radius: 1vh;
     border-bottom-right-radius: 1vh;
-    transition: width .3s ease;
+    transition: width .2s ease;
+    z-index: 30
 }

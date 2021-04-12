@@ -13,7 +13,21 @@ import Date from './date';
 import styles from './post.module.css';
 import ProgressBar from './progressBar';
 
+let headers = [];
 const renderers = {
+  root: ({ children }) => {
+    headers = children.reduce((acc, { key, props }) => {
+      if (key.indexOf('heading') === 0) {
+        acc.push({ level: props.level, text: props.children[0].props.children });
+      }
+      return acc;
+    }, []);
+    return (
+      <div className={styles.markdown}>
+        {children}
+      </div>
+    );
+  },
   code: ({ language, value }) => (
     <SyntaxHighlighter
       style={monokaiSublime}
@@ -52,7 +66,6 @@ const renderers = {
 
 const Article = React.memo(({ text }) => (
   <ReactMarkdown
-    className={styles.markdown}
     plugins={[gfm, math]}
     renderers={renderers}
     transformImageUri={(url) => (url.match('../public') ? url.substring(9) : `/${url}`)}
@@ -93,6 +106,7 @@ function Post({ postData, focus }) {
       <ProgressBar
         percent={Math.round((100 * (offsetHeight + progress)) / scrollHeight)}
         focus={focus}
+        headers={headers}
       />
       <h1 className={styles.postHead}>{postData.title}</h1>
       <div className="text-gray-500">

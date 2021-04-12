@@ -1,0 +1,6 @@
+{
+    "files.autoSave": "onFocusChange",
+    "editor.fontSize": 14,
+    "javascript.format.enable": false,
+    "prettier.eslintIntegration": true,
+}

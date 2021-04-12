@@ -1,0 +1,39 @@
+.headerText{
+    writing-mode: vertical-lr;
+    color: white;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.tocContainer{
+    animation: fadeIn .5s ease 1;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 1vh;
+    padding-bottom: 2vh;
+    padding-right: .5vw;
+    padding-left: .5vw;
+}
+
+.header2{
+    font-size: 2vw;
+}
+
+.header3{
+    font-size: 1.5vw;
+    display: none;
+}
+
+.header4{
+    font-size: 1.2vw;
+    display: none;
+}
+

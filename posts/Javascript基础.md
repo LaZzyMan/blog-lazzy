@@ -10,27 +10,27 @@ image:
 
 [《现代javascript教程》](https://zh.javascript.info/getting-started)笔记
 
-### 基础知识
+## 基础知识
 
-#### script
+### script
 
 - 嵌入脚本：直接通过script标签嵌入html文档
 - 外部脚本：通过src特性指定路径添加到html，指定src特性的script标签，其内容将被忽略。
 
 只有最简单的脚本才嵌入到 HTML 中，更复杂的脚本存放在单独的文件中，使用独立文件的好处是浏览器会下载它，然后将它保存到浏览器的缓存中。之后，其他页面想要相同的脚本就会从缓存中获取，而不是下载它。所以文件实际上只会下载一次。这可以节省流量，并使得页面（加载）更快。
 
-#### 现代模式
+### 现代模式
 
 - "use strict"启用严格模式（必须出现在脚本的最顶部）
 - 高级语言结构会自动开启严格模式
 
-#### 变量
+### 变量
 
 - let：现代变量声明方式
 - var：旧变量声明方式
 - const：常量声明方式，基本类型值无法修改
 
-#### 数据类型
+### 数据类型
 
 - number 用于任何类型的数字：整数或浮点数，在 ±(253-1) 范围内的整数。
 - bigint 用于任意长度的整数。
@@ -54,7 +54,7 @@ image:
 - 数字型转换：Number()；算数函数和表达式会自动进行数字类型转换(+优先作为字符串拼接)；undefined(NaN), null(0)；
 - 布尔型转换：0、''、null、undefined、NaN变为false；Boolean(0)//false, Boolean('0')//true
 
-#### 操作符
+### 操作符
 
 - 基础运算符：
   - 一元操作符：数字转化，一元运算符+(对数字无效，将其他类型转为数字)
@@ -88,7 +88,7 @@ a ?? b;
 (a !== null && a !== undefined) ? a : b;
 ```
 
-#### 值比较
+### 值比较
 
 - 比较结果为Boolean类型
 - 字符串是按字符（母）逐个进行比较的。
@@ -110,13 +110,13 @@ alert( undefined < 0 ); // false (2)
 alert( undefined == 0 ); // false (3)
 ```
 
-#### 条件分支
+### 条件分支
 
 - if语句会计算括号内表达式并转换为布尔形式
 - condition ? value1 : value2
 - 有时可以使用问号 ? 来代替 if 语句
 
-#### 循环
+### 循环
 
 - while(...){...}
 - do{...}while(...)
@@ -139,7 +139,7 @@ outer: for (let i = 0; i < 3; i++) {
 alert('Done!');
 ```
 
-#### switch
+### switch
 
 - switch：
   - 至少含有一个case和一个可选的default；
@@ -163,7 +163,7 @@ switch(x) {
 }
 ```
 
-#### 函数
+### 函数
 
 - 声明(在主代码流中声明为单独的语句的函数)和表达式(在一个表达式中或另一个语法结构中创建的函数)
   - 函数表达式是在代码执行到达时被创建，并且仅从那一刻起可用
@@ -182,9 +182,9 @@ let sayHi = function() {
 };
 ```
 
-### 对象
+## 对象
 
-#### 基本语法
+### 基本语法
 
 ```js
 let user = new Object(); // “构造函数” 的语法
@@ -239,7 +239,7 @@ for (let code in codes) {
 }
 ```
 
-#### 引用和复制
+### 引用和复制
 
 与原始类型相比，对象的根本区别之一是对象是“通过引用”被存储和复制的，与原始类型值相反：字符串，数字，布尔值等 —— 始终是以“整体值”的形式被复制的。因此仅当两个对象所指向的地址相同时，二者才相等：
 ```js
@@ -275,7 +275,7 @@ function DeepCopy(src){
 Object.assign(dest, [src1, src2...])
 ```
 
-#### 垃圾回收
+### 垃圾回收
 
 JavaScript 中主要的内存管理概念是可达性，“可达”值是那些以某种方式可访问或可用的值，它们一定是存储在内存中的，例如当前函数的局部变量和参数、嵌套调用时调用链上所有的函数变量与参数以及全局变量等。如果一个值可以通过引用或引用链从根访问任何其他值，则认为该值是可达的。
 
@@ -292,7 +292,7 @@ JavaScript 中主要的内存管理概念是可达性，“可达”值是那些
 - 增量收集（Incremental collection）—— 如果有许多对象，并且我们试图一次遍历并标记整个对象集，则可能需要一些时间，并在执行过程中带来明显的延迟。所以引擎试图将垃圾收集工作分成几部分来做。然后将这几部分会逐一进行处理。这需要它们之间有额外的标记来追踪变化，但是这样会有许多微小的延迟而不是一个大的延迟。
 - 闲时收集（Idle-time collection）—— 垃圾收集器只会在 CPU 空闲时尝试运行，以减少可能对代码执行的影响。
 
-#### 构造函数
+### 构造函数
 
 构造函数在技术上是常规函数。不过有两个约定：
 
@@ -326,7 +326,7 @@ new.target用于检查函数是否被作为构造函数调用，是则返回函�
 - 如果 return 返回的是一个对象，则返回这个对象，而不是 this。
 - 如果 return 返回的是一个原始类型，则忽略。
 
-#### 可选链
+### 可选链
 
 - obj?.prop —— 如果 obj 存在则返回 obj.prop，否则返回 undefined。
 - obj?.[prop] —— 如果 obj 存在则返回 obj[prop]，否则返回 undefined。
@@ -337,7 +337,7 @@ new.target用于检查函数是否被作为构造函数调用，是则返回函�
 - new， delete
 - toString, valueOf
 
-#### Symbol
+### Symbol
 
 - 对象属性只能是String或Symbol
 - Symbol通过实例化创建对象，Symbol保证是唯一的，可以添加描述并通过description属性访问，但相同描述的symbol之不相同
@@ -387,7 +387,7 @@ let localSymbol = Symbol("name");
 alert( Symbol.keyFor(localSymbol) ); // undefined，非全局
 ```
 
-#### 对象的原始值转换
+### 对象的原始值转换
 
 - 不存在布尔值转换，所有对象对应true
 - "number" hint：数值转换发生在数学运算（二元加法除外）、显式转换、><大小比较
@@ -457,9 +457,9 @@ alert(user + 500); // valueOf -> 1500
 - 对象被转换为原始值（通过前面我们描述的规则）。
 - 如果生成的原始值的类型不正确，则继续进行转换。
 
-### 原始类型方法
+## 原始类型方法
 
-#### 基本类型
+### 基本类型
 
 为了对对象执行操作（访问其方法和属性），创建了提供额外功能的对象包装器，使用后即被销毁。
 ```js
@@ -510,7 +510,7 @@ if (zero) { // zero 为 true，因为它是一个对象
   - .padStart(targetLength [, padString]), .padEnd(targetLength [, padString])填充字符串到指定长度并返回新字符串
   - .trim()(删除两端的空格), .trimStart(), .trimEnd(), .repeat(count), .split()
   
-#### Array(数组是基于对象创建的)
+### Array(数组是基于对象创建的)
 
 - .length，减少length会截断数组，设为0会将数组清空
 - .toString()返回逗号分隔元素列表，数组没有 Symbol.toPrimitive，也没有 valueOf，它们只能执行 toString 进行转换
@@ -639,7 +639,7 @@ alert(soldiers[0].age); // 20
 alert(soldiers[1].age); // 23
 ```
 
-#### 可迭代对象
+### 可迭代对象
 
 为了让对象可迭代（也就让 for..of 可以运行）我们需要为对象添加一个名为 Symbol.iterator 的方法（一个专门用于使对象可迭代的内置 symbol）。
 
@@ -690,7 +690,7 @@ let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 （数组的 toString 转化方法生效）
 ```
 
-#### Map和Set
+### Map和Set
 
 Map 是一个带键的数据项的集合，就像一个 Object 一样。 但是它们最大的差别是 Map 允许任何类型的键（key）。
 
@@ -821,7 +821,7 @@ let doublePrices = Object.fromEntries(
 alert(doublePrices.meat); // 8
 ```
 
-#### 解构赋值
+### 解构赋值
 
 解构赋值 是一种特殊的语法，它使我们可以将数组或对象“拆包”为到一系列变量中，因为有时候使用变量更加方便。解构操作对那些具有很多参数和默认值等的函数也很奏效。
 
@@ -932,7 +932,7 @@ function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
 }
 ```
 
-#### 日期和时间
+### 日期和时间
 
 - 在 JavaScript 中，日期和时间使用 Date 对象来表示。我们不能只创建日期，或者只创建时间，Date 对象总是同时创建两者。
 - 月份从 0 开始计数（对，一月是 0）。
@@ -941,7 +941,7 @@ function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
 - 日期可以相减，得到的是以毫秒表示的两者的差值。因为当 Date 被转换为数字时，Date 对象会被转换为时间戳。
 - 使用 Date.now() 可以更快地获取当前时间的时间戳。
 
-#### JSON
+### JSON
 
 - JSON.stringify 将对象转换为 JSON。
 - JSON.parse 将 JSON 转换回对象。
@@ -949,9 +949,9 @@ function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
 - JSON转换的对象不能存在循环引用
 - 对象通过实现toJSON来自定义序列化方式，在JSON.parse(str, \[reviver])中通过传入revicer函数来完成自定义序列化的反序列化。
 
-### 函数进阶
+## 函数进阶
 
-#### 堆栈
+### 堆栈
 
 执行上下文 是一个内部数据结构，它包含有关函数执行时的详细细节：当前控制流所在的位置，当前的变量，this 的值（此处我们不使用它），以及其它的一些内部细节，一个函数调用仅具有一个与其相关联的执行上下文。
 
@@ -963,7 +963,7 @@ function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
 - 嵌套调用结束后，从堆栈中恢复之前的执行上下文，并从停止的位置恢复外部函数。
 递归深度等于堆栈中上下文的最大数量。
 
-#### Rest参数和Spread语法
+### Rest参数和Spread语法
 
 Rest参数：Rest 参数可以通过使用三个点 ... 并在后面跟着包含剩余参数的数组名称，来将它们包含在函数定义中。这些点的字面意思是“将剩余参数收集到一个数组中”，Rest 参数必须放到参数列表的末尾。
 
@@ -1029,7 +1029,7 @@ let objCopy = { ...obj };
 alert(obj === objCopy); // false
 ```
 
-#### 变量作用域和闭包
+### 变量作用域和闭包
 
 考虑嵌套函数：
 
@@ -1154,14 +1154,14 @@ function sayHi() {
 sayHi();
 ```
 
-#### 全局对象
+### 全局对象
 
 - 在浏览器中，它的名字是 “window”，对 Node.js 而言，它的名字是 “global”，其它环境可能用的是别的名字。最近，globalThis 被作为全局对象的标准名称加入到了 JavaScript 中，所有环境都应该支持该名称。
 - 全局对象的所有属性都可以被直接访问
 - 在浏览器中，使用 var（而不是 let/const！）声明的全局函数和变量会成为全局对象的属性。
 - 如果一个值非常重要，以至于你想使它在全局范围内可用，那么可以直接将其作为属性写入
 
-#### 函数对象
+### 函数对象
 
 - 属性name上下文命名，如果函数自己没有提供，那么在赋值中，会根据上下文来推测一个，无法推测正确名字将但会空字符串
 - 属性length：它返回函数入参的个数，rest参数不参与计数
@@ -1245,7 +1245,7 @@ function getFunc() {
 getFunc()(); // error: value is not defined
 ```
 
-#### 调度
+### 调度
 
 setTimeout：允许我们将函数推迟到一段时间间隔之后再执行，并返回一个定时器标识符。
 ```js
@@ -1471,7 +1471,7 @@ function throttle(f, ms) {
 }
 ```
 
-#### 函数绑定
+### 函数绑定
 
 一旦方法被传递到与对象分开的某个地方 —— this 就丢失。
 ```js
@@ -1544,7 +1544,7 @@ alert( double(4) ); // = mul(2, 4) = 8
 alert( double(5) ); // = mul(2, 5) = 10
 ```
 
-#### 箭头函数
+### 箭头函数
 
 箭头函数没有this，访问this时会从外部获取，因此也不能使用构造器new
 
@@ -1606,7 +1606,7 @@ function defer(f, ms) {
 }
 ```
 
-### 对象属性配置
+## 对象属性配置
 
 属性标志：
 - writable — 如果为 true，则值可以被修改，否则它是只可读的。
@@ -1649,9 +1649,9 @@ alert(user.name); // Alice
 alert(user.surname); // Cooper
 ```
 
-### 原型与继承
+## 原型与继承
 
-#### 原型继承
+### 原型继承
 
 在 JavaScript 中，对象有一个特殊的隐藏属性 \[\[Prototype]]（如规范中所命名的），它要么为 null，要么就是对另一个对象的引用。该对象被称为“原型”，当我们从 object 中读取一个缺失的属性时，JavaScript 会自动从原型中获取该属性。在编程中，这种行为被称为“原型继承”。
 
@@ -1724,7 +1724,7 @@ for(let prop in rabbit) {
 }
 ```
 
-#### F.prototype
+### F.prototype
 
 F.prototype：使用new F()创建对象时，new操作符将会使F.prototype成为新对象的\[\[Prototype]]。每个函数都有默认的prototype属性，默认的prototype只有一个属性constructor，其指向函数自身。prototype中的属性可以通过\[\[Prototype]]给所有实例使用；为了确保正确的 "constructor"，我们可以选择添加/删除属性到默认 "prototype"，而不是将其整个覆盖，也可以手动重新创建 constructor 属性。
 
@@ -1824,7 +1824,7 @@ let user2 = new user.constructor('Pete');
 alert( user2.name ); // undefined
 ```
 
-#### 原生的原型
+### 原生的原型
 
 obj是一个空对象，obj={}等价于new Object()，因此生成字符串的toString方法来自于obj.__proto__，即Obejct.prototype；而Object.prototype上方的链中没有更多的\[\[Prototype]]，而是指向null。
 
@@ -1886,7 +1886,7 @@ obj.join = Array.prototype.join;
 alert( obj.join(',') ); // Hello,world!
 ```
 
-#### 原型方法
+### 原型方法
 
 对proto进行操作的现代方法：
 
@@ -1958,9 +1958,9 @@ Object.getPrototypeOf(rabbit).sayHi();
 rabbit.__proto__.sayHi();
 ```
 
-### Class
+## Class
 
-#### 基本语法
+### 基本语法
 
 ```js
 class MyClass {
@@ -2099,7 +2099,7 @@ let button = new Button("hello");
 setTimeout(button.click, 1000); // hello
 ```
 
-#### 类继承
+### 类继承
 
 ```js
 class Animal {
@@ -2276,7 +2276,7 @@ tree.sayHi();  // I'm an animal (?!?)
 
 \[\[HomeObject]] 是为类和普通对象中的方法定义的。但是对于对象而言，方法必须确切指定为 method()，而不是 "method: function()".
 
-#### 静态属性和静态方法
+### 静态属性和静态方法
 
 我们可以把一个方法赋值给类的函数本身，而不是赋给它的 "prototype"。这样的方法被称为 静态的（static）。
 
@@ -2443,7 +2443,7 @@ console.log(users.find("Dean")); //["Dean Edwards", "Dean Tom"]
 console.log(users.find("Dean","Edwards")); //["Dean Edwards"]
 ```
 
-### Promise，async/await
+## Promise，async/await
 
 Promise实例具有内部属性：
 - state：最初是 "pending"，然后在 resolve 被调用时变为 "fulfilled"，或者在 reject 被调用时变为 "rejected"。
@@ -2486,7 +2486,7 @@ new Promise((resolve, reject) => {
   .then(result => show result, err => show error)
 ```
 
-#### Promise链
+### Promise链
 
 Promise的链式调用会使得 result 通过 .then 处理程序（handler）链进行传递。
 ```js
@@ -2564,7 +2564,7 @@ fetch('/article/promise-chaining/user.json')
   .catch(error => alert(error.message));
 ```
 
-#### Promise.all()
+### Promise.all()
 
 结果数组中元素的顺序与其在源 promise 中的顺序相同。即使第一个 promise 花费了最长的时间才 resolve，但它仍是结果数组中的第一个。
 
@@ -2601,14 +2601,14 @@ Promise.all(requests)
   .then(users => users.forEach(user => alert(user.name)));
 ```
 
-#### Promise.allSettled()
+### Promise.allSettled()
 
 与all不同，Promise.allSettled 等待所有的 promise 都被 settle，无论结果如何。结果数组具有：
 
 - {status:"fulfilled", value:result} 对于成功的响应，
 - {status:"rejected", reason:error} 对于 error。
 
-#### Promise.race()
+### Promise.race()
 与 Promise.all 类似，但只等待第一个 settled 的 promise 并获取其结果（或 error）。
 
 ```js
@@ -2619,7 +2619,7 @@ Promise.race([
 ]).then(alert); // 1
 ```
 
-#### async/await
+### async/await
 
 async表示这个函数总是返回一个promise。其他值将自动被包装在一个resolved的promise中。
 
@@ -2698,15 +2698,15 @@ async function f() {
 f().catch(alert); // TypeError: failed to fetch // (*)
 ```
 
-### Document
+## Document
 
-#### 浏览器环境
+### 浏览器环境
 
 - window根对象
 - 文档对象模型（DOM），入口点document
 - 浏览器对象模型（BOM）：navigation.userAgent, navigation.platform, location.href, alter/confirm/prompt...
 
-#### DOM
+### DOM
 
 最顶层的documentElement(html标签)、body和head可以直接作为document的属性使用，但是脚本无法访问到还没有生成的DOM节点：
 
@@ -2795,9 +2795,9 @@ DOM节点属性：nodeType(1,3,9), nodeName/tagName, innerHTML(直接修改inner
 - 当前滚动可以通过scrollTop或者window.pageYOffset()获得
 - scrollTo(x,y), scrollBy(x,y), scrollIntoView(top=true/false)
 
-### 缓存
+## 缓存
 
-#### HTTP header缓存机制
+### HTTP header缓存机制
 
 对于HTTP的缓存机制来说，策略体现在HTTP的头部信息的字段上，而这些策略根据是否需要重新向服务器端发起请求可以分为强缓存和协商缓存两大类。
 
@@ -2811,7 +2811,7 @@ http状态码区别：
 - 200(from cache): 强缓Expires/Cache-Control两者都存在，未过期，Cache-Control优先Expires时，浏览器从本地获取资源成功
 - 304(Not Modified )：协商缓存Last-modified/Etag没有过期时，服务端返回状态码304
 
-##### 强缓存
+#### 强缓存
 
 强缓存相关的HTTP header 的字段
 
@@ -2825,7 +2825,7 @@ http状态码区别：
 
 ![](../public/javascript基础/01.png)
 
-##### 协商缓存
+#### 协商缓存
 
 协商缓存无论如何都要和服务器交互，相关的Header字段
 
@@ -2835,7 +2835,7 @@ http状态码区别：
 
 ![](../public/javascript基础/02.png)
 
-#### 浏览器数据缓存
+### 浏览器数据缓存
 
 Cookie与Web Storage的区别：
 
@@ -2846,7 +2846,7 @@ Cookie与Web Storage的区别：
 - web Storage支持事件通知机制，可以将数据更新的通知发送给监听者
 - web Storage的api接口使用更方便
 
-##### Cookie
+#### Cookie
 
 Cookie机制：HTTP协议是无状态的协议。一旦数据交换完毕，客户端与服务器端的连接就会关闭，再次交换数据需要建立新的连接。这就意味着服务器无法从连接上跟踪会话。Cookie实际上是一小段的文本信息。客户端请求服务器，如果服务器需要记录该用户状态，就使用response的Set-Cookie header向客户端浏览器颁发一个Cookie。客户端浏览器会把Cookie保存起来。当浏览器再请求与该网站同源的网站时，浏览器把请求的网址连同该Cookie一同提交给服务器。服务器检查该Cookie，以此来辨认用户状态。服务器还可以根据需要修改Cookie的内容。
 
@@ -2953,7 +2953,7 @@ function deleteCookie(name) {
 - 下次访问 ads.com 网站时，远程服务器获取 cookie id 并识别用户
 - 更为重要的是，当用户从 site.com 网站跳转至另一个也带有 banner 的网站 other.com 时，ads.com 会获得该 cookie，因为它属于 ads.com，从而识别用户并在他在网站之间切换时对其进行跟踪
 
-##### Web Storage：localStorage, sessionStorage
+#### Web Storage：localStorage, sessionStorage
 
 - 与 cookie 不同，Web 存储对象不会随每个请求被发送到服务器。因此，我们可以保存更多数据。大多数浏览器都允许保存至少 2MB 的数据（或更多），并且具有用于配置数据的设置。
 - 还有一点和 cookie 不同，服务器无法通过 HTTP header 操纵存储对象。一切都是在 JavaScript 中完成的。
@@ -3001,7 +3001,7 @@ window.onstorage = event => { // 等同于 window.addEventListener('storage', ()
 localStorage.setItem('now', Date.now());
 ```
 
-##### IndexDB
+#### IndexDB
 
 IndexedDB 是一个浏览器内置的数据库，它比 localStorage 强大得多。
 
@@ -3010,9 +3010,9 @@ IndexedDB 是一个浏览器内置的数据库，它比 localStorage 强大得�
 - 支持键范围查询、索引。
 - 和 localStorage 相比，它可以存储更大的数据量。
 
-### HTTP
+## HTTP
 
-#### HTTP状态码
+### HTTP状态码
 
 - 1XX接收消息正在处理
 - 2XX正常处理完毕
@@ -3031,7 +3031,7 @@ IndexedDB 是一个浏览器内置的数据库，它比 localStorage 强大得�
   - 502 Bad Gate
   - 503 Service Unavailiable
 
-#### HTTPS
+### HTTPS
 
 HTTPS是对HTTP协议的扩展，原有的HTTP协议会得到TLS（安全传输层协议）或SSL（安全套接层）的加密。
 
@@ -3073,7 +3073,7 @@ TLS握手：TLS 握手的目的是建立安全连接
 - 服务器就绪：服务器发送经过共享密钥 KEY加密过的"finished"信号。
 - 达成安全通信：握手完成，双方使用对称加密进行安全通信。
 
-#### HTTP协议
+### HTTP协议
 
 HTTP/0.9（单行协议）：请求由单行指令构成，以唯一可用方法GET开头，其后跟目标资源的路径（一旦连接到服务器，协议、服务器、端口号这些都不是必须的）。HTTP/0.9 的响应内容并不包含HTTP头，这意味着只有HTML文件可以传送，无法传输其他类型的文件；也没有状态码或错误代码：一旦出现问题，一个特殊的包含问题描述信息的HTML文件将被发回，供人们查看。文件传输完毕后就关闭TCP连接。
 
@@ -3103,7 +3103,7 @@ HTTP/2：
 - HTTP 协议不带有状态，每次请求都必须附上所有信息。所以，请求的很多字段都是重复的，比如Cookie和User Agent，一模一样的内容，每次请求都必须附带，这会浪费很多带宽，也影响速度。HTTP/2 对这一点做了优化，引入了头信息压缩机制（header compression）。一方面，头信息使用gzip或compress压缩后再发送；另一方面，客户端和服务器同时维护一张头信息表，所有字段都会存入这个表，生成一个索引号，以后就不发送同样字段了，只发送索引号，这样就提高速度了。
 - HTTP/2 允许服务器未经请求，主动向客户端发送资源，这叫做服务器推送（server push）。常见场景是客户端请求一个网页，这个网页里面包含很多静态资源。正常情况下，客户端必须收到网页后，解析HTML源码，发现有静态资源，再发出静态资源请求。其实，服务器可以预期到客户端请求网页后，很可能会再请求静态资源，所以就主动把这些静态资源随着网页一起发给客户端了。
 
-### iframe
+## iframe
 
 iframe元素旨在允许您将其他Web文档嵌入到当前文档中。这很适合将第三方内容嵌入您的网站，您可能无法直接控制，也不希望实现自己的版本 - 例如来自在线视频提供商的视频，Disqus等评论系统，在线地图提供商，广告横幅等。
 
@@ -3117,9 +3117,9 @@ iframe元素旨在允许您将其他Web文档嵌入到当前文档中。这很�
 - https可以防止嵌入式内容访问父文档中的内容
 - sandbox属性：一个允许包含在其里的代码以适当的方式执行或者用于测试，但不能对其他代码库（意外或恶意）造成任何损害的容器称为sandbox，默认情况下，没有参数的sandbox属性将强制执行所有可用的限制
 
-### 浏览器事件
+## 浏览器事件
 
-#### 事件简介
+### 事件简介
 
 处理程序（handler）是在发生用户行为（action）时运行 JavaScript 代码的一种方式。为元素添加处理程序主要有三种方法。
 
@@ -3219,7 +3219,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 ```
 
-#### 冒泡和捕获
+### 冒泡和捕获
 
 冒泡：当一个事件发生在一个元素上，它会首先运行在该元素上的处理程序，然后运行其父元素上的处理程序，然后一直向上到其他祖先上的处理程序。
 
@@ -3296,7 +3296,7 @@ DOM事件传播的三个阶段：点击目标元素，事件首先通过祖先�
 - 如果我们 addEventListener(..., true)，那么我们应该在 removeEventListener(..., true) 中提到同一阶段，以正确删除处理程序。
 - 如果我们在同一阶段有多个事件处理程序，并通过 addEventListener 分配给了相同的元素，则它们的运行顺序与创建顺序相同。
 
-#### 事件委托
+### 事件委托
 
 冒泡与捕获允许通过事件委托来处理事件：如果我们有许多以类似方式处理的元素，那么就不必为每个元素分配一个处理程序 —— 而是将单个处理程序放在它们的共同祖先上，通过event.target查看事件发生的实际位置并进行处理。
 
@@ -3321,7 +3321,7 @@ function highlight(td) {
 ```
 元素的data-xxx属性可以通过DOM对象的dataset.xxx获取
 
-#### 浏览器默认行为
+### 浏览器默认行为
 
 如果我们使用 JavaScript 处理一个事件，那么我们通常不希望发生相应的浏览器行为，而是想要实现其他行为进行替代。阻止浏览器默认行为的方式有两种：
 - 主流的方式是使用 event 对象。有一个 event.preventDefault() 方法。
@@ -3379,7 +3379,7 @@ event.defaultPrevented属性能够表明当前事件的默认行为是否已经�
 </script>
 ```
 
-#### 创建自定义事件
+### 创建自定义事件
 
 事件构造器参数：
 - type —— 事件类型，可以是像这样 "click" 的字符串，或者我们自己的像这样 "my-event" 的参数。
@@ -3463,9 +3463,9 @@ cancelable选项被设为true的自定义事件在事件处理程序中调用了
 
 如果想要保持异步进行，可以将dispatchEvent包装在0延迟的setTimeout中。
 
-### 浏览器资源加载
+## 浏览器资源加载
 
-#### 页面生命周期
+### 页面生命周期
 
 HTML页面的生命周期包括三个重要事件：
 
@@ -3473,7 +3473,7 @@ HTML页面的生命周期包括三个重要事件：
 - load —— 浏览器不仅加载完成了 HTML，还加载完成了所有外部资源：图片，样式等（外部资源已加载完成，样式已被应用，图片大小也已知了）。
 - beforeunload/unload —— 当用户正在离开页面时（beforeunload用户正在离开：我们可以检查用户是否保存了更改，并询问他是否真的要离开；unload用户几乎已经离开了，但是我们仍然可以启动一些操作，例如发送统计数据）。
 
-##### DOMContentLoaded
+#### DOMContentLoaded
 
 DOMContentLoaded事件发生在document对象上，只能通过addEventListener来捕获：
 ```js
@@ -3486,7 +3486,7 @@ DOM的构建会被脚本阻塞，因此DOMContentLoaded事件的处理程序会�
 
 通常情况下外部样式不会影响DOM的构建，但如果样式后面有一个脚本，那么由于该脚本必须等待样式加载完成，DOM的构建会被阻塞知道二者都完成执行。
 
-##### window.onload
+#### window.onload
 
 当整个页面，包括样式、图片和其他资源被加载完成时，会触发 window 对象上的 load 事件。可以通过 onload 属性获取此事件。
 
@@ -3503,7 +3503,7 @@ DOM的构建会被脚本阻塞，因此DOMContentLoaded事件的处理程序会�
 <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
 ```
 
-##### window.onunload
+#### window.onunload
 
 当需要在用户离开时通过unload事件将数据保存到服务器时，可以使用navigator.sendBeacon，它在后台发送数据，转换到另外一个页面不会有延迟：浏览器离开页面，但仍然在执行 sendBeacon：
 
@@ -3519,7 +3519,7 @@ window.addEventListener("unload", function() {
 - 我们不仅能发送字符串，还能发送表单以及其他格式的数据，在 Fetch 一章有详细讲解，但通常它是一个字符串化的对象。
 - 数据大小限制在 64kb。
 
-##### window.onbeforeunload
+#### window.onbeforeunload
 
 如果访问者触发了离开页面的导航（navigation）或试图关闭窗口，beforeunload 处理程序将要求进行更多确认。
 
@@ -3529,7 +3529,7 @@ window.onbeforeunload = function() {
 };
 ```
 
-##### readyState
+#### readyState
 
 document.readyState属性可以提供当前加载状态的信息：
 - loading —— 文档正在被加载。
@@ -3573,7 +3573,7 @@ readystatechange事件可以监听readyState属性的改变：
 </script>
 ```
 
-#### 脚本加载
+### 脚本加载
 
 当浏览器加载 HTML 时遇到script标签，浏览器就不能继续构建DOM。它必须立刻执行此脚本。对于外部脚本 也是一样的：浏览器必须等脚本下载完，并执行结束，之后才能继续处理剩余的页面。这会导致两个重要的问题：
 - 脚本不能访问到位于它们下面的 DOM 元素，因此，脚本无法给它们添加处理程序等
@@ -3597,11 +3597,11 @@ async：async 特性与 defer 有些类似，它也能够让脚本不阻塞页�
 
 动态脚本：使用 JavaScript 动态地创建一个脚本，并将其附加（append）到文档（document）中，当脚本被附加到文档时，脚本就会立即开始加载，默认情况下，动态脚本的行为是符合async。如果我们显式地设置了 script.async=false，则可以改变这个规则。然后脚本将按照脚本在文档中的顺序执行，就像 defer 那样。
 
-#### 资源加载
+### 资源加载
 
 浏览器允许我们通过onload和onerror事件跟踪外部资源的加载。
 
-##### 加载脚本
+#### 加载脚本
 
 ```js
 // onload
@@ -3625,7 +3625,7 @@ script.onerror = function() {
 };
 ```
 
-##### 其他资源
+#### 其他资源
 
 - 大多数资源在被添加到文档中后，便开始加载。但是 img 是个例外。它要等到获得 src 后才开始加载(利用这一点可以进行图片的预加载，为了立即显示一张图片，我们可以“提前”创建它，浏览器开始加载图片，并将其保存到缓存中。以后，当相同图片出现在文档中时（无论怎样），它都会立即显示)。
 - 对于 iframe 来说，iframe 加载完成时会触发 iframe.onload 事件，无论是成功加载还是出现 error。
@@ -3643,7 +3643,7 @@ img.onerror = function() {
 };
 ```
 
-##### 跨源策略
+#### 跨源策略
 
 一个源（域/端口/协议三者）无法获取另一个源（origin）的内容。如果我们使用的是来自其他域的脚本，并且该脚本中存在 error，那么我们无法获取 error 的详细信息。
 
@@ -3678,7 +3678,7 @@ window.onerror = function(message, url, line, col, errorObj) {
 - crossorigin="anonymous" —— 如果服务器的响应带有包含 * 或我们的源（origin）的 header Access-Control-Allow-Origin，则允许访问。浏览器不会将授权信息和 cookie 发送到远程服务器。
 - crossorigin="use-credentials" —— 如果服务器发送回带有我们的源的 header Access-Control-Allow-Origin 和 Access-Control-Allow-Credentials: true，则允许访问。浏览器会将授权信息和 cookie 发送到远程服务器。
 
-### javascript 动画
+## javascript 动画
 
 requestAnimationFrame结构化动画：
 
