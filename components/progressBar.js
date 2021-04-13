@@ -3,7 +3,7 @@ import { categoryColormap } from '../lib/settings';
 import TOC from './toc';
 import style from './progressBar.module.css';
 
-export default function ProgressBar({ percent, focus, headers }) {
+export default function ProgressBar({ percent, focus, headers, onTOCClick }) {
   const progress = (percent > 100) ? 100 : percent;
   const [isHover, setIsHover] = useState(false);
   return (
@@ -17,7 +17,7 @@ export default function ProgressBar({ percent, focus, headers }) {
         className={style.progressBar}
         style={{ width: isHover ? 0 : `${progress}%`, backgroundColor: categoryColormap[focus] }}
       />
-      {isHover && <TOC headers={headers} />}
+      {isHover && <TOC headers={headers} onTOCClick={onTOCClick} />}
     </div>
   );
 }

@@ -44,24 +44,24 @@ const getTitleTree = (headers) => {
   return root;
 };
 
-const TOC = ({ headers }) => {
+const TOC = ({ headers, onTOCClick }) => {
   const titleTree = getTitleTree(headers);
   return (
     <div className={styles.tocContainer}>
-      <TitleTree titleTree={titleTree} />
+      <TitleTree titleTree={titleTree} onTitleClick={onTOCClick} />
     </div>
   );
 };
 
-const TitleTree = ({ titleTree }) => (
+const TitleTree = ({ titleTree, onTitleClick }) => (
   titleTree.children.map((node) => (
-    <Title level={node.level} text={node.text}>
-      <TitleTree titleTree={node} />
+    <Title level={node.level} text={node.text} onTitleClick={onTitleClick}>
+      <TitleTree titleTree={node} onTitleClick={onTitleClick} />
     </Title>
   ))
 );
 
-const Title = ({ level, text, children }) => {
+const Title = ({ level, text, children, onTitleClick }) => {
   const headerText = [styles.header2, styles.header3, styles.header4];
   const [isHover, setIsHover] = useState(false);
   if (level > 4 || level < 2) return null;
@@ -75,6 +75,9 @@ const Title = ({ level, text, children }) => {
     >
       <div
         className={headerText[level - 2]}
+        onClick={() => { onTitleClick(text, level); }}
+        role="button"
+        tabIndex={0}
       >
         <div className={styles.point} />
         {level === 2

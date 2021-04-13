@@ -45,23 +45,6 @@ const renderers = {
   math: ({ value }) => (
     <BlockMath math={value} />
   ),
-  heading: ({ level, children }) => {
-    let header;
-    switch (level) {
-      case 1:
-        header = (<h1>{children}</h1>);
-        break;
-      case 2:
-        header = (<h2>{children}</h2>);
-        break;
-      case 3:
-        header = (<h3>{children}</h3>);
-        break;
-      default:
-        header = (<h4>{children}</h4>);
-    }
-    return (<a href={`#${children[0].props.children}`}>{header}</a>);
-  },
 };
 
 const Article = React.memo(({ text }) => (
@@ -84,7 +67,17 @@ function Post({ postData, focus }) {
       setProgress((prev) => prev + 200);
     }
     if (e.deltaY < 0 && progress > 0) {
-      setProgress((prev) => prev - 200);
+      setProgress((prev) => (prev >= 200 ? prev - 200 : 0));
+    }
+  };
+  const handleTOCClick = (text, level) => {
+    const header = Array.from(document.querySelectorAll(`h${level}`)).find((i) => (
+      i.innerText.split(' ').join('') === text.split(' ').join('')
+    ));
+    if (header.offsetTop < scrollHeight) {
+      setProgress(header.offsetTop);
+    } else {
+      setProgress(scrollHeight - offsetHeight);
     }
   };
   const onScreenResize = () => {
@@ -107,6 +100,7 @@ function Post({ postData, focus }) {
         percent={Math.round((100 * (offsetHeight + progress)) / scrollHeight)}
         focus={focus}
         headers={headers}
+        onTOCClick={handleTOCClick}
       />
       <h1 className={styles.postHead}>{postData.title}</h1>
       <div className="text-gray-500">
