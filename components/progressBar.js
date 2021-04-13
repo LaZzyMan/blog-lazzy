@@ -10,8 +10,8 @@ export default function ProgressBar({ percent, focus, headers }) {
     <div
       className={style.progressBarBK}
       style={{ 'max-height': isHover ? '100vh' : '1vh', backgroundColor: isHover ? categoryColormap[focus] : 'gray' }}
-      onMouseEnter={() => { setIsHover(true); console.log('mouseover'); }}
-      onMouseLeave={() => { setIsHover(false); console.log('mouseout'); }}
+      onMouseEnter={() => { setIsHover(true); }}
+      onMouseLeave={() => { setIsHover(false); }}
     >
       <div
         className={style.progressBar}

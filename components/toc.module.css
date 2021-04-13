@@ -13,27 +13,58 @@
 }
 
 .tocContainer{
+    border-top-color: white;
+    border-top-width: 2px;
     animation: fadeIn .5s ease 1;
     display: flex;
     justify-content: space-between;
     position: relative;
     top: 1vh;
     padding-bottom: 2vh;
-    padding-right: .5vw;
-    padding-left: .5vw;
+    padding-right: 1vw;
+    padding-left: 1vw;
+}
+
+.titleContainer{
+    display: flex;
+    justify-content: space-between;
 }
 
 .header2{
-    font-size: 2vw;
+    font-size: 1.75vw;
+    outline: none;
 }
 
 .header3{
-    font-size: 1.5vw;
-    display: none;
+    font-size: 1.25vw;
+    margin-left: 1vw;
+    outline: none;
 }
 
 .header4{
-    font-size: 1.2vw;
-    display: none;
+    font-size: 1vw;
+    margin-left: 1vw;
+    outline: none;
+}
+
+.point{
+    height: 10px;
+    width: 10px;
+    position: relative;
+    top: -6px;
+    border-radius: 5px;
+    background: white;
+    margin: 0 auto;
+}
+
+.ring{
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: -22px;
+    border-radius: 10px;
+    border-top-color: white;
+    border-top-width: 2px;
+    margin: 0 auto;
 }
 
