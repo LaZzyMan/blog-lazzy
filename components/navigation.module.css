@@ -1,5 +1,5 @@
 .navigationContainer{
-    @apply flex flex-row ml-bklw absolute;
+    @apply flex flex-row ml-bklw relative;
 }
 
 .navigationButton{

@@ -2,8 +2,9 @@
     padding-top: 1vh;
     width: 2vh;
     height: 2vh;
-    position: absolute;
-    right: calc( 3.3vw - 2vh);
+    position: relative;
+    margin-right: calc( 3.3vw - 2vh);
+    margin-left: auto;
     outline: none;
 }
 

@@ -1,6 +1,29 @@
 {
     "files.autoSave": "onFocusChange",
+    "files.associations": {
+        "*.css": "scss"
+    },
+    "git.autofetch": true,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "html",
+        { "language": "javascript", "autoFix": true }
+    ],
+    "eslint.options": {
+        "plugins": ["html"]
+    },
+    "search.followSymlinks": false,
+    "git.enableSmartCommit": true,
     "editor.fontSize": 14,
-    "javascript.format.enable": false,
-    "prettier.eslintIntegration": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true 
+    },
+    "files.eol": "\n",
+    "css.validate": false,
+    "scss.validate": false
 }

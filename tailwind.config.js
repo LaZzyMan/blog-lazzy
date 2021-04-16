@@ -31,7 +31,7 @@ module.exports = {
         h27: '27vh',
         hcard: '45vh',
         hmain: '35vh',
-        hsection: '68vh',
+        hsection: '75vh',
         hpost: '85vh',
       },
       zIndex: {

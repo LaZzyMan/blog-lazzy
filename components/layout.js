@@ -1,15 +1,22 @@
 import React, { useEffect } from 'react';
+import { description, name } from '../lib/settings';
+import { debounce } from '../lib/utils';
 import Background from './background';
 import BgGrid from './bgGrid';
 import Header from './header';
 import styles from './layout.module.css';
 
-const name = 'Seigo Natsume';
-const description = '日々、私たちが過ごしている日常は、実は奇跡の連続なのかもしれない。';
-
 export default function Layout({
-  home, children, onNaviBarClick, focus, naviProgress, category, onHomeClick,
+  home, children, focus, changeDisplay, changeFocus,
 }) {
+  const handleMouseWheel = (e) => {
+    if (e.deltaY < 0 && focus > 0) {
+      changeFocus(focus - 1);
+    }
+    if (e.deltaY > 0 && focus < 3) {
+      changeFocus(focus + 1);
+    }
+  };
   useEffect(() => {
     const root = document.documentElement;
     root.addEventListener('mousemove', (e) => {
@@ -19,21 +26,12 @@ export default function Layout({
   }, []);
   return (
     <div
-      onWheel={home
-        ? (e) => {
-          if (e.deltaY < 0 && focus > 0) {
-            onNaviBarClick(focus - 1);
-          }
-          if (e.deltaY > 0 && focus < 3) {
-            onNaviBarClick(focus + 1);
-          }
-        }
-        : () => {}}
+      onWheel={home ? (e) => debounce(handleMouseWheel, 200)(e) : null}
     >
       <div className={styles.mouse} />
-      <Background focus={focus} home={home} category={category} />
+      <Background focus={focus} home={home} />
       <BgGrid />
-      <div
+      <section
         className="ml-bkl mr-bklfixed pt-bkl"
       >
         <Header
@@ -41,12 +39,17 @@ export default function Layout({
           name={name}
           description={description}
           focus={focus}
-          onNaviBarClick={onNaviBarClick}
-          naviProgress={naviProgress}
-          onHomeClick={onHomeClick}
+          changeDisplay={changeDisplay}
+          changeFocus={changeFocus}
         />
-        {children}
-      </div>
+        {home && children}
+      </section>
+      <section
+        className={styles.postSection}
+        style={home ? { top: '-100vh' } : { top: '-5.5vw' }}
+      >
+        {!home && children }
+      </section>
     </div>
   );
 }

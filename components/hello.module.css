@@ -9,3 +9,9 @@
         opacity: 1;
     }
   }
+
+  .container{
+      display: flex;
+      flex-direction: column;
+      padding-top: 15vh;
+  }

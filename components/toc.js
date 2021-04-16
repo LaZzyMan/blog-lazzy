@@ -61,7 +61,9 @@ const TitleTree = ({ titleTree, onTitleClick }) => (
   ))
 );
 
-const Title = ({ level, text, children, onTitleClick }) => {
+const Title = ({
+  level, text, children, onTitleClick,
+}) => {
   const headerText = [styles.header2, styles.header3, styles.header4];
   const [isHover, setIsHover] = useState(false);
   if (level > 4 || level < 2) return null;

@@ -4,7 +4,7 @@ export default function Hello({
   mood1, mood2, mood3, onClickDown,
 }) {
   return (
-    <div className="flex flex-col">
+    <div className={styles.container}>
       <span className="text-gray-500 text-title">{mood1}</span>
       <div className="mt-h10">
         <span className="text-gray-500 text-title">{mood2}</span>

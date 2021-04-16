@@ -1,4 +1,4 @@
 .header{
-    width: 94.6vw;
-    @apply flex flex-col fixed;
+    width: 100%;
+    @apply flex flex-row items-center relative;
 }

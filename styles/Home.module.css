@@ -8,27 +8,27 @@
 }
 
 .pos_1{
-  top: 68vh;
+  top: 75vh;
 }
 
 .pos_2{
-  top: 136vh;
+  top: 150vh;
 }
 
 .pos_3{
-  top: 204vh;
+  top: 225vh;
 }
 
 .pos_n1{
-  top: -68vh;
+  top: -75vh;
 }
 
 .pos_n2{
-  top: -136vh;
+  top: -150vh;
 }
 
 .pos_n3{
-  top: -204vh;
+  top: -225vh;
 }
 
 .postSection{
@@ -37,4 +37,15 @@
   transition: top 0.5s ease-out;
   width: 78.4vw;
   left: 10.7vw;
+}
+
+.navi{
+  margin-top: 5vh;
+}
+
+.main{
+  transition: all .5s ease-out .2s;
+  position: relative;
+  height: 75vh;
+  @apply ml-bklw overflow-hidden w-wsection;
 }

@@ -20,3 +20,10 @@
     transition: transform 0.1s ease-out;
     border-radius: 10px;
   }
+
+  .postSection{
+    position: relative;
+    margin-left: 10.7vw;
+    margin-right: 10.8vw;
+    transition: all .5s ease;
+  }
