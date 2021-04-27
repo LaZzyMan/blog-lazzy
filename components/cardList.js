@@ -36,7 +36,7 @@ export default function CardList({
             onClick={() => { onPostClick(id); }}
             tabIndex={0}
           >
-            <div className={styles.cardCover} style={{ 'background-image': bgColor }} />
+            <div className={styles.cardCover} style={{ backgroundImage: bgColor }} />
             <div className={`${styles.cardImage} ${!isTransitionEnd && 'opacity-0'}`}>
               <img src={image} alt="" />
             </div>
