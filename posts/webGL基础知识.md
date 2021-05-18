@@ -158,4 +158,98 @@ vec4是一个有四个浮点数据的数据类型。在JavaScript中你可以把
 使用它们可以做出非常有趣的东西，但如你所见，到目前为止的例子中， 处理每个像素时片断着色器可用信息很少，幸运的是我们可以给它传递更多信息。 想要从顶点着色器传值到片断着色器，我们可以定义“可变量（varyings）”。
 
 
+## Texture
 
+加载纹理通常需要创建一个纹理对象和一个图片对象，在图片加载完成的回调函数中对纹理进行纹理的加载；首先将纹理对象绑定到gl.TEXTURE_2D使其成为当前操作纹理，之后通过texImage2D()将图片数据写入纹理：
+
+```c
+void gl.texImage2D(target, level, internalformat, width, height, border, format, type, ArrayBufferView? pixels);
+void gl.texImage2D(target, level, internalformat, format, type, ImageData? pixels);
+void gl.texImage2D(target, level, internalformat, format, type, HTMLImageElement? pixels);
+void gl.texImage2D(target, level, internalformat, format, type, HTMLCanvasElement? pixels);
+void gl.texImage2D(target, level, internalformat, format, type, HTMLVideoElement? pixels);
+void gl.texImage2D(target, level, internalformat, format, type, ImageBitmap? pixels);
+```
+
+之后需要通过gl.texParameteri/f来三个照顾纹理参数，包括纹理的缩放滤波器和水平/垂直方向填充方式等：
+
+```c
+void gl.texParameterf(GLenum target, GLenum pname, GLfloat param);
+void gl.texParameteri(GLenum target, GLenum pname, GLint param);
+```
+
+如果对纹理缩小使用多级滤波器，则需要通过gl.generateMiMap()来生成多级纹理，最后将null绑定daogl.TEXTURE_2D告知当前纹理操作完毕。
+
+```js
+function initTextures() {
+  cubeTexture = gl.createTexture();
+  cubeImage = new Image();
+  cubeImage.onload = function() { handleTextureLoaded(cubeImage, cubeTexture); }
+  cubeImage.src = "cubetexture.png";
+}
+
+function handleTextureLoaded(image, texture) {
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+  gl.generateMipmap(gl.TEXTURE_2D);
+  gl.bindTexture(gl.TEXTURE_2D, null);
+}
+```
+## Blend
+
+Blend（混合）是一种将颜色混合显示输出的技术，通常情况下某个像素一旦确定要显示，渲染管线会将该像素所对应的颜色值直接写入缓冲区覆盖原来这个位置的像素颜色。而 Blend 可以通过某种算法将即将写入缓冲区的像素与已在缓冲区的像素颜色做混合处理。
+
+```js
+// 开启/关闭blend
+gl.enable(gl.BLEND);
+gl.disable(gl.BLEND);
+```
+
+source color为即将被吸入缓冲区的颜色，destination color为缓冲区已经存在的颜色，blend通过blendFunc和blendFuncSpeparate方法来对二者进行混合得到最红写入缓冲区的颜色。
+```c
+// color(RGBA) = (sourceColor * sfactor) + (destinationColor * dfactor). RBGA
+void gl.blendFunc(sfactor, dfactor);
+// color(RGB) = (sourceColor * srcRGB) + (destinationColor * dstRGB)
+// color(A) = (sourceAlpha * srcAlpha) + (destinationAlpha * dstAlpha)
+void gl.blendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
+```
+
+gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)对应的的计算公式为：
+
+$${ color }_{ final }={ color }_{ source }\times { \alpha }_{ source }+{ color }_{ dest }\times (1-{ \alpha }_{ source })$$
+
+此时显示的颜色将为来源色与自身alpha相乘+目标色与1-alpha相乘，alpha=0/1分别对应全透明和不透明效果。但是在这种混合中，alpha通道的值也会发生变化，在webgl context设置了alpha=true的情况下，显示颜色还会与canvas所覆盖的页面进一步叠加混合。为了避免这种情况，可以将alpha设置为false或者使用blendFuncSeparate方法。相比于blendFunc，它可以单独计算混合后颜色alpha通道值，例如通过gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ZERO, gl.ONE)保持alpha值不变。
+
+颜色混合的方式可以通过blendEquation来设置：
+
+```c
+// gl.FUNC_ADD：相加处理
+// gl.FUNC_SUBTRACT：相减处理
+// gl.FUNC_REVERSE_SUBSTRACT：反向相减处理，即 dest 减去 source
+void blendEquation(GLenum mode);
+void blendEquationSeparate(GLenum modeRGB, GLenum modeAlpha);
+```
+
+webgl中alpha通道有两种渲染方式：
+- Premultiplied Alpha，也叫做 Associated Alpha。表示 RGB 在存储的时候事先将透明信息与 RGB 相乘，比如纯红色的 RGB 是 (1, 0, 0)，再加上 50% 透明度，那么存储的时候变为：(0.5, 0, 0, 0.5)
+- Non-premultiplied Alpha，也叫做 Unassociated Alpha。表示 RGB 不会事先与透明度相乘，上面的例子就变为：(1, 0, 0, 0.5)
+
+在使用PNG图片时，虽然PNG图片本身的信息通常是Non-premultiplied Alpha，图片数据自身Alpha和RGB分开保存的，但是在 WebGL 创建纹理时我们仍然可以指定使用哪种方式，只不过要调整不同的混合方式。在使用Premultiplied Alpha方式时需要注意source color已经被alpha通道提前混合。
+
+## GLSL 内建函数
+
+[GLSL Functions](https://www.shaderific.com/glsl-functions)
+
+```c
+// 点乘
+dot(x, y)
+// 规整输入值
+clamp(x, min, max)
+// 线性插值
+mix(x, y, level)
+// 角度转弧度
+radians(degree)
+degree(radians)
+```

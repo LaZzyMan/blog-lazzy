@@ -19,7 +19,7 @@ image:
 ### 顶点着色器处理流程
 
 ```js
-gl_Position = position * modelMatrix * viewMatrix * projectionMatrix;
+gl_Position = position * modelMatrix * viewMatrix * projectionMatrix;       
 ```
 
 - mesh中声明的对象的坐标是对象自身的局部坐标Vertex.position，其作用在于创建自身的结构。
