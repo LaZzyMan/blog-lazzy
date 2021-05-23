@@ -144,3 +144,12 @@ object.updateMatrix();
 ```
 
 ps：一个对象的matrix存储了该对象 相对于 其Object3D.parent（父节点）的变换。要在 世界 坐标系中获取对象的转换，您必须访问该对象的Object3D.matrixWorld。
+
+
+
+
+BufferGeometry类用于存储TypedArray数据到Buffer，并通过BufferAttribute将Buffer绑定到着色程序的build-in/custom attribute。特别的是BufferGeometry直接通过position属性对应的Buffer来确定绘制顶点的个数（相当于drawArray中传入的数量），且position属性默认类型为vec3，缺少position属性将不能进行顶点的绘制（即使在vertexShader中利用其他attribute指定了gl_position）。
+
+由于webgl有多种绘制模式（POINTs/TRIANGLES/LINES等），并且几何体通常需要构建复杂的三角网来实现，因此Three提供了各类Geometry类，他们都继承自BufferGeometry类，其作用在于能够通过更简单的参数设置（长宽高/半径等）来自动完成复杂的顶点TypeArray的构建并绑定到position属性。
+
+Material相当于webgl中的着色程序以及webgl渲染设置的集合，Material指定了渲染的混合方式（blending/stencilTest/deepTest相关设置）以及裁剪，透明度等选项。通过ShaderMaterial可以使用自定义的vertex/fragmentShader创建着色程序用于渲染，着色程序中有事先声明的内建使用的uniforms可以通过
