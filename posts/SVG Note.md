@@ -1,5 +1,4 @@
 ---
-layout: svg
 title: SVG Note
 date: '2018-08-04 20:17:26'
 tags: 

@@ -101,7 +101,7 @@ function Post({ postData, focus, home }) {
       style={{ opacity: home ? 0 : 1 }}
     >
       <Head>
-        <title>{postData.title}</title>
+        <title>{postData ? postData.title : ''}</title>
         <link rel="icon" href="/img/favicon.ico" />
         <meta name="keywords" content="Blog" />
         <meta name="author" content="LaZzY" />
@@ -112,9 +112,9 @@ function Post({ postData, focus, home }) {
         headers={headers}
         onTOCClick={handleTOCClick}
       />
-      <h1 className={styles.postHead}>{postData.title}</h1>
+      <h1 className={styles.postHead}>{postData ? postData.title : ''}</h1>
       <div className="text-gray-500">
-        <Date dateString={postData.date} />
+        <Date dateString={postData ? postData.date : '2000-01-01 00:00:00'} />
       </div>
       <div id="scrollArea" className={styles.postContainer}>
         {postData
