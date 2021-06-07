@@ -129,3 +129,6 @@ pollingWorker.onmessage = function () {
 
 pollingWorker.postMessage('init');
 ```
+
+## MessageChannel
+
