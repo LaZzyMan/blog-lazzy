@@ -253,3 +253,41 @@ mix(x, y, level)
 radians(degree)
 degree(radians)
 ```
+
+
+### colorMask
+设置在渲染到WebGLFramebuffer时启用或禁用哪些颜色组件：
+```c
+void gl.colorMask(red, green, blue, alpha);
+
+gl.colorMask(true, true, true, false);
+
+gl.getParameter(gl.COLOR_WRITEMASK);
+// [true, true, true, false]
+```
+
+### depthMask
+设置渲染过程是否能够写入深度缓冲区：
+```c
+void gl.depthMask(flag);
+
+gl.depthMask(false);
+
+gl.getParameter(gl.DEPTH_WRITEMASK);
+// false
+```
+
+### stencilMask
+设置模版平面中的写入位：
+```c
+void gl.stencilMask(mask);
+
+gl.stencilMask(110101);
+
+gl.getParameter(gl.STENCIL_WRITEMASK);
+// 110101
+gl.getParameter(gl.STENCIL_BACK_WRITEMASK);
+// 110101
+gl.getParameter(gl.STENCIL_BITS);
+// 0
+```
